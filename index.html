@@ -1,0 +1,184 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>一年級數學練習單</title><style>
+/* Layout: controls on top; each practice sheet is a paper-like card of two question columns.
+   Palette: warm paper neutrals with one deep-blue accent; red reserved for answers. */
+:root {
+  --bg: #f4f2ec;
+  --fg: #1c2330;
+  --muted: #5f6772;
+  --card: #ffffff;
+  --line: #d6d0c2;
+  --accent: #2d5b86;
+  --on-accent: #ffffff;
+  --ans: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+    --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+  --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; min-width: 0; }
+h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0 0 8px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0 0 16px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.row[hidden] { display: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label { font-size: 14px; color: var(--muted); }
+select, input[type="number"] {
+  font: inherit;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 0;
+}
+select { flex: 1 1 220px; max-width: 100%; }
+input[type="number"] { width: 150px; max-width: 100%; }
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg); font-size: 14px; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.page {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 16px;
+}
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { grid-column: 1 / -1; margin: 0 0 2px; }
+.fill { display: inline-block; min-width: 4em; border-bottom: 1px solid var(--line); }
+.page-foot {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 22px;
+  row-gap: 2px;
+}
+.q { display: flex; align-items: center; gap: 6px; min-width: 0; min-height: 30px; font-size: 16px; }
+.no { width: 2.2em; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.pt { min-width: 0; overflow-wrap: anywhere; }
+.blank { flex: 1 1 36px; min-width: 36px; border-bottom: 1px solid var(--line); height: 1.2em; }
+.ans { display: none; color: var(--ans); font-weight: 700; flex: none; }
+.show-ans .ans { display: inline; }
+.pic .q { min-height: 84px; }
+.pic svg { flex: none; width: 96px; height: 80px; color: var(--fg); }
+
+.key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mastery ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mastery li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; }
+.mastery li .q { min-height: 0; }
+.mastery input {
+  font: inherit;
+  width: 96px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.fix { color: var(--ans); font-weight: 700; display: none; }
+.mastery li.wrong .fix { display: inline; }
+.result { font-weight: 700; font-size: 16px; }
+
+@media (max-width: 480px) {
+  .page-head { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+@media print {
+  :root:root {
+    --bg: #ffffff; --fg: #000000; --muted: #333333; --card: #ffffff;
+    --line: #777777; --accent: #000000; --on-accent: #ffffff; --ans: #000000;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #ffffff; color: #000000; }
+  .wrap > h1, .lede, .panel, .mastery, .note { display: none !important; }
+  .page { border: 0; border-radius: 0; margin: 0; padding: 0; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .page-head { margin-bottom: 6px; padding-bottom: 6px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); row-gap: 0; }
+  .text .q { height: 5.9mm; min-height: 0; font-size: 12pt; }
+  .pic .q { height: 25mm; min-height: 0; font-size: 12pt; }
+  .pic svg { width: 26mm; height: 22mm; }
+  .page-foot { font-size: 9pt; }
+  .answers { break-before: page; }
+  .answers[hidden] { display: block !important; }
+  .show-ans .ans { display: inline !important; }
+}
+
+[hidden]{display:none!important}.meta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted)}.progress{height:6px;background:var(--line);border-radius:6px;margin:12px 0 16px}.bar{height:100%;background:var(--accent);border-radius:6px}.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;margin-top:16px}.card h2{font-size:20px;line-height:1.5}.visual{background:var(--bg);min-height:90px;padding:20px;display:flex;align-items:center;flex-wrap:wrap;gap:12px;border-radius:6px;margin:16px 0}.dot{width:25px;height:25px;background:var(--fg);border-radius:50%;display:inline-block}.number{font-size:38px;font-weight:bold}.seq{font-size:26px}.card button{font:inherit;min-height:44px;padding:8px 16px;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--on-accent);cursor:pointer}.card button.secondary{background:transparent;color:var(--accent)}.card input[type=number]{font-size:20px;width:100px}.choices,.drawgrid{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}.choices button,.drawgrid button{min-width:48px;background:var(--bg);color:var(--fg);font-size:20px}.choices button.selected,.drawgrid button.selected{background:var(--accent);color:var(--on-accent)}.drawgrid button{border-radius:50%;width:48px;height:48px;padding:0}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.message{margin-top:16px;padding:12px;background:var(--bg);line-height:1.7}.subtle{font-size:13px;color:var(--muted)}fieldset{border:0;padding:0}fieldset label{display:block;color:var(--fg);margin:12px 0}.mastery input[type=checkbox],.mastery input[type=radio]{width:18px;height:18px;min-height:0;padding:0;vertical-align:middle;margin-right:7px}.pair{display:flex;align-items:center;gap:12px;margin:10px 0}.pair select{flex:0 1 110px}.pair .dot{width:18px;height:18px}details{margin-top:24px}summary{cursor:pointer;font-weight:700}li{margin:8px 0;line-height:1.5}:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+</style></head><body><div class="wrap"><h1>一年級數學練習單</h1><p class="lede">在網頁逐題練習；完成後和家長一起訂正及確認。</p><section class="panel" aria-label="目前學習"><div class="row"><strong>第 1 單元：10 以內的數</strong><span class="note">現行題目試行版</span></div><div class="meta"><strong id="pack"></strong><span id="counter"></span></div><div class="progress"><div class="bar" id="bar"></div></div></section><main class="card mastery" id="view"></main><section class="page"><details><summary>家長：查看學習紀錄與使用說明</summary><p class="note">首次作答和訂正分開記錄。時間只供參考；精熟要至少 9／10 首次獨立正確，還須完成適用操作及指導者確認。資料只保存在這台裝置的瀏覽器，清除瀏覽資料會消失。這是草案試行版，尚無帳號、跨裝置同步或服務端進度保護。</p><ol id="history"></ol></details></section></div><script src="questions.js"></script><script src="app.js"></script></body></html>
