@@ -1,0 +1,206 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三年級｜第 6 單元：被乘數含 0 的乘法（另有20題改編候選）（本機審查草案）</title><style>
+/* Layout: controls on top; each practice sheet is a paper-like card of two question columns.
+   Palette: warm paper neutrals with one deep-blue accent; red reserved for answers. */
+:root {
+  --bg: #f4f2ec;
+  --fg: #1c2330;
+  --muted: #5f6772;
+  --card: #ffffff;
+  --line: #d6d0c2;
+  --accent: #2d5b86;
+  --on-accent: #ffffff;
+  --ans: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+    --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+  --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; min-width: 0; }
+h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0 0 8px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0 0 16px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.row[hidden] { display: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label { font-size: 14px; color: var(--muted); }
+select, input[type="number"] {
+  font: inherit;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 0;
+}
+select { flex: 1 1 220px; max-width: 100%; }
+input[type="number"] { width: 150px; max-width: 100%; }
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg); font-size: 14px; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.page {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 16px;
+}
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { grid-column: 1 / -1; margin: 0 0 2px; }
+.fill { display: inline-block; min-width: 4em; border-bottom: 1px solid var(--line); }
+.page-foot {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 22px;
+  row-gap: 2px;
+}
+.q { display: flex; align-items: center; gap: 6px; min-width: 0; min-height: 30px; font-size: 16px; }
+.no { width: 2.2em; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.pt { min-width: 0; overflow-wrap: anywhere; }
+.blank { flex: 1 1 36px; min-width: 36px; border-bottom: 1px solid var(--line); height: 1.2em; }
+.ans { display: none; color: var(--ans); font-weight: 700; flex: none; }
+.show-ans .ans { display: inline; }
+.pic .q { min-height: 84px; }
+.pic svg { flex: none; width: 96px; height: 80px; color: var(--fg); }
+
+.key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mastery ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mastery li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; }
+.mastery li .q { min-height: 0; }
+.mastery input {
+  font: inherit;
+  width: 96px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.fix { color: var(--ans); font-weight: 700; display: none; }
+.mastery li.wrong .fix { display: inline; }
+.result { font-weight: 700; font-size: 16px; }
+
+@media (max-width: 480px) {
+  .page-head { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+@media print {
+  :root:root {
+    --bg: #ffffff; --fg: #000000; --muted: #333333; --card: #ffffff;
+    --line: #777777; --accent: #000000; --on-accent: #ffffff; --ans: #000000;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #ffffff; color: #000000; }
+  .wrap > h1, .lede, .panel, .mastery, .note { display: none !important; }
+  .page { border: 0; border-radius: 0; margin: 0; padding: 0; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .page-head { margin-bottom: 6px; padding-bottom: 6px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); row-gap: 0; }
+  .text .q { height: 5.9mm; min-height: 0; font-size: 12pt; }
+  .pic .q { height: 25mm; min-height: 0; font-size: 12pt; }
+  .pic svg { width: 26mm; height: 22mm; }
+  .page-foot { font-size: 9pt; }
+  .answers { break-before: page; }
+  .answers[hidden] { display: block !important; }
+  .show-ans .ans { display: inline !important; }
+}
+
+.group-0 .smallbtn.selected{background:#a13a2a;color:#fff}.group-1 .smallbtn.selected{background:#245b92;color:#fff}.pair-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(18px,1fr));max-width:360px}.pair-col{display:grid;text-align:center;line-height:1.3}.place-table{border-collapse:collapse;margin:12px 0}.place-table th,.place-table td{border:1px solid var(--line);padding:4px;text-align:center}.place-table input[type=number]{width:65px}.stack-front{display:flex;align-items:end;gap:4px;min-height:100px}.stack-col{display:flex;flex-direction:column;gap:2px}.stack-block{display:block;width:24px;height:24px;border:1px solid var(--fg);background:var(--bg)}.stack-top{display:flex;gap:4px}.stack-input input[type=number]{width:70px}.classify-list{display:flex;flex-wrap:wrap;gap:8px}.class-object{border:1px solid var(--line);padding:8px;border-radius:6px}.class-object select{display:block;width:95px;min-height:38px}.compare-bars{max-width:240px}.compare-line{display:flex;align-items:center;gap:8px;margin:7px 0}.compare-track{width:200px}.compare-bar{height:16px;background:var(--accent)}.compare-bar.second{margin-left:32px}.compare-bars.aligned .compare-bar.second{margin-left:0}.measure-scroll{overflow-x:auto}.measure-strip{height:22px;background:var(--accent);margin-bottom:5px}.measure-slots{display:flex;width:max-content}.measure-slot{width:24px;height:24px;min-width:24px;padding:0;border:1px dashed var(--line);background:var(--card);color:var(--fg);cursor:pointer}.measure-slot.selected{background:var(--accent);color:var(--on-accent)}.coin{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--fg);border-radius:50%;font-weight:bold}.cointray input[type=number]{width:65px}.tenbar{display:inline-flex;border:1px solid var(--fg)}.unit-square{display:inline-block;width:9px;height:9px;border:1px solid var(--fg);background:var(--card)}.duration-row{display:flex;align-items:center;gap:8px}.duration-name{width:6em;flex:none}.duration-bar{display:inline-block;height:12px;background:var(--accent);vertical-align:middle}.dot.square{border-radius:0}.dot.crossed{position:relative}.dot.crossed:after{content:"×";position:absolute;font-size:27px;line-height:18px;color:var(--ans);left:1px;top:0}[hidden]{display:none!important}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.item{border-bottom:1px solid var(--line);padding:10px 0;min-width:0}.item p{margin:5px 0}.item input[type=number]{width:75px;min-height:40px}.dots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.dot{width:18px;height:18px;border-radius:50%;background:var(--fg);display:inline-block}.options{display:flex;gap:6px;flex-wrap:wrap}.smallbtn{font:inherit;min-width:40px;min-height:40px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);cursor:pointer}.smallbtn.selected{background:var(--accent);color:var(--on-accent)}.drawbtn{border-radius:50%;padding:0;width:40px}.feedback{color:var(--ans);font-weight:bold}.pair{display:flex;align-items:center;gap:6px;margin:4px 0}.pair select{flex:0 1 95px;min-height:38px}.resultbox{padding:12px;background:var(--bg);border-radius:6px}.mastery input[type=radio],.mastery input[type=checkbox]{width:18px;min-height:0;height:18px}.mastery fieldset{border:0;padding:0}.mastery label{color:var(--fg)}.item label{color:var(--fg)}.page-head{display:block}.note{line-height:1.6}@media(max-width:600px){.question-list{grid-template-columns:1fr}}@media print{.question-list{grid-template-columns:1fr 1fr}.panel.mastery{display:none!important}}
+
+.u1-print{display:none}.u1-key-draw svg{vertical-align:middle;margin:1px}.u1-key-draw{display:block}
+@media print{.u1-item>*:not(.u1-print){display:none!important}.u1-item .u1-print{display:block}.u1-item{break-inside:avoid;page-break-inside:avoid}.u1-print p{margin:3px 0}.u1-dots{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}.u1-drawbox{border:1px solid #000;height:21mm;margin:4px 0}.u1-options{display:flex;gap:14mm;margin:4mm 0;font-size:14pt}.u1-key-draw{break-inside:avoid}.page:has(.u1-item){break-after:auto}.page:has(.u1-item) .page-head span{display:none}}
+.progress-notice{margin:0 0 16px;padding:15px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}.progress-notice h2{margin:0 0 2px}.progress-notice p{margin:6px 0}.progress-date{font-size:13px;color:var(--muted)}.progress-notice summary{cursor:pointer;color:var(--accent);font-weight:700;padding:6px 0}.progress-notice li{margin:6px 0}.progress-notice ul{padding-left:1.4em;margin:6px 0}@media print{.progress-notice{display:none!important}}
+
+.item textarea{display:block;width:100%;min-height:5em;box-sizing:border-box;font:inherit}.grid{border-collapse:collapse;margin:8px 0;max-width:100%}.grid th,.grid td{border:1px solid var(--line);text-align:center;padding:3px}.grid input{width:2.7em;max-width:100%;box-sizing:border-box}.grid caption{text-align:left;font-weight:bold}.digit-mark{margin:8px 0}.digit-mark button{min-width:42px;margin-right:4px}.digit-mark button[aria-pressed="true"]{border:2px solid var(--accent);border-radius:50%;background:var(--bg)}.print-only{display:none}[hidden]{display:none!important}@media print{.controls,.feedback,.group-section,article>label,article>p{display:none!important}.print-only{display:block}.item{break-inside:avoid}.paper{border-collapse:collapse}.paper th,.paper td{border:1px solid #000;width:13mm;height:8mm}.notes{height:25mm;border:1px solid #000}}.key[hidden]{display:none!important}
+article.item>label>input[type="text"],article.item>label>input:not([type]),article.question>label>input[type="text"]{font:inherit;box-sizing:border-box;width:min(100%,10em);min-height:40px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+article.item>button:not([class]){font:inherit;min-height:44px;padding:8px 16px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}article.item>button:not([class]):focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media print{article.item>button,article.item>details.steps,article.item>.roleflow{display:none!important}}
+.local-print-notice{display:none}@media print{.local-print-notice{display:block;font-size:10pt}}
+.extra-item>label{display:block;margin:8px 0}.extra-item textarea{width:100%;min-height:4em;box-sizing:border-box;font:inherit}.extra-print{display:none}@media print{.extra-item>p{display:block!important}.extra-item>.extra-print{display:block}.extra-summary,.extra-item>.extra-feedback{display:none!important}}.mastery-review{margin-top:20px}.mastery-item{margin:14px 0}.mastery-item>label{display:block;margin:8px 0}.mastery-item textarea{width:100%;min-height:4em;box-sizing:border-box;font:inherit}.mastery-result{font-weight:bold}</style></head><body><main class="wrap"><h1>數學自動學習系統</h1><p class="lede"><a href="https://shezi.org.tw/#resources" target="_top">回學習入口</a>　｜　三年級：選擇單元，產生練習單。同一個編號可以重現同一份題目。</p><p class="local-print-notice">試用／審查中：本單元為候選內容，題意、答案、教學及列印仍待確認；口讀、理由與實物操作請成人核對。</p><section class="panel controls"><div class="row"><label for="directUnit">單元</label><select id="directUnit"><option value="g3-direct-u01-draft-20261113.html">第 1 單元：10000 以內的數與千位</option><option value="g3-direct-u02-draft-20261113.html">第 2 單元：位值換算與數量表示（另有20題改編候選）</option><option value="g3-direct-u03-draft-20261113.html">第 3 單元：多次進位直式加法（另有20題改編候選）</option><option value="g3-direct-u04-draft-20261113.html">第 4 單元：多次退位直式減法（另有20題改編候選）</option><option value="g3-direct-u05-draft-20261113.html">第 5 單元：二三位數乘一位數（另有20題改編候選）</option><option value="g3-direct-u06-draft-20261113.html" selected>第 6 單元：被乘數含 0 的乘法（另有20題改編候選）</option><option value="g3-direct-u07-draft-20261113.html">第 7 單元：整除與乘除關係（另有20題改編候選）</option><option value="g3-direct-u08-draft-20261113.html">第 8 單元：有餘數的除法（另有20題改編候選）</option><option value="g3-direct-u09-draft-20261113.html">第 9 單元：除法直式（另有20題改編候選）</option><option value="g3-direct-u10-draft-20261113.html">第 10 單元：含 0 的除法直式（另有20題改編候選）</option><option value="g3-direct-u11-draft-20261113.html">第 11 單元：兩步驟連乘（另有20題改編候選）</option><option value="g3-direct-u12-draft-20261113.html">第 12 單元：加減與除的兩步驟（另有20題改編候選）</option><option value="g3-direct-u13-draft-20261113.html">第 13 單元：生活四則估算與合理性（另有20題改編候選）</option><option value="g3-direct-u14-draft-20261113.html">第 14 單元：單位分數點數與同分母比較（45題候選）</option><option value="g3-direct-u15-draft-20261113.html">第 15 單元：同分母加減及和等於1（45題候選）</option><option value="g3-direct-u16-draft-20261113.html">第 16 單元：大於1至2的分數活動（25題候選）</option><option value="g3-direct-u17-draft-20261113.html">第 17 單元：十分位與一位小數比較（23題候選）</option><option value="g3-direct-u18-draft-20261113.html">第 18 單元：一位小數直式加減與解題（25題候選）</option><option value="g3-direct-u19-draft-20261113.html">第 19 單元：從0開始的整數數線報讀標示（30題候選）</option><option value="g3-direct-u20-draft-20261113.html">第 20 單元：數線比較與加減（30題候選）</option><option value="g3-direct-u21-draft-20261113.html">第 21 單元：毫米實測估測與長度換算（19題候選）</option><option value="g3-direct-u22-draft-20261113.html">第 22 單元：角的操作比較與直角（25題候選）</option><option value="g3-direct-u23-draft-20261113.html">第 23 單元：平方公分實測與方格點數面積（28題候選）</option><option value="g3-direct-u24-draft-20261113.html">第 24 單元：公升毫升實測估測與換算加減（44題候選）</option><option value="g3-direct-u25-draft-20261113.html">第 25 單元：公斤公克實測估測與換算加減（44題候選）</option><option value="g3-direct-u26-draft-20261113.html">第 26 單元：日時分秒的實測與換算（30題候選）</option><option value="g3-direct-u27-draft-20261113.html">第 27 單元：同單位時間及時分無進退位加減（25題候選）</option><option value="g3-direct-u28-draft-20261113.html">第 28 單元：正長方形邊角特徵與斜擺辨認（20題候選）</option><option value="g3-direct-u29-draft-20261113.html">第 29 單元：圓心半徑直徑與圓規作圖（24題候選）</option><option value="g3-direct-u30-draft-20261113.html">第 30 單元：平面分割與重組（紙筆10題、實作6項）</option><option value="g3-direct-u31-draft-20261113.html">第 31 單元：展開圖與立體形體（紙筆10題、實作4項）</option><option value="g3-direct-u32-draft-20261113.html">第 32 單元：一維模式觀察、操作與說明（29題候選）</option><option value="g3-direct-u33-draft-20261113.html">第 33 單元：生活一維二維表格報讀（35題候選）</option><option value="g3-direct-u34-draft-20261113.html">第 34 單元：表格製作與模式呈現（16題候選）</option><option value="g3-direct-u35-draft-20261113.html">第 35 單元：全年綜合複習與必要操作確認（52題候選）</option></select></div><div class="row"><label for="seed">練習編號</label><input id="seed" type="number" min="1" max="2147483646" value="1"><button class="btn" id="new" type="button">產生新練習單</button><button class="btn ghost" id="show" type="button">依編號重新產生</button></div><div class="row"><label class="check"><input type="checkbox" id="showAns">顯示答案</label><label class="check"><input type="checkbox" id="showKey">顯示答案頁</label></div><p>編號只重排 4 題候選，切換單元或重新產生會清除作答及協助紀錄。</p><strong>試用／審查草稿：4題來源候選，屬同類練習；不是完整教材或精熟測驗。</strong><p>依題意在網頁圈記或紙上圈出被乘數的0，記錄每組的量，並完成一列乘法直式。按鈕只檢查積；組數、位值、交換、連線、提示及實物活動由成人核對。其中一題原題允許成人示範第一步，不能視為獨立測量。重新整理清除作答；列印為空白卷。教育、手機及列印尚待確認。</p></section><p class="print-only">試用／審查草稿：4題來源候選，非完整教材或精熟。請依題意使用實物並由成人核對位值、直式及提示。</p><section class="page"><div class="page-head"><h2>第 6 單元：被乘數含0的乘法</h2><span id="sheetSeed"></span></div><div id="questions" class="question-list"></div></section><section class="page controls"><button class="btn" id="checkAnswered" type="button">批改已作答題目</button><span id="summary" role="status"></span><p>僅檢查積；其他要求需成人核對。</p></section><section id="key" class="page key" hidden></section><section class="panel controls"><p><a href="g3-u06-paper-exam-print-20261125.html" target="_blank" rel="noopener">開啟第6單元紙筆測驗列印草案</a>；題目仍待審查。</p></section></main><script>
+const items=[{"id":"PG03","facet":"zero","prompt":"每組508，共6組。先圈被乘數的0所在位，再完成一列積直式，指出這位如何接收其他位的進位。成人可示範第一步，但記提示後讓孩子完成。","answer":"508×6＝3048","operands":[508,6],"product":3048,"curriculum_codes":["N-3-3"],"source_educational_status":"pending","requires_manual_review":true,"notes":"原題允許成人示範，應記錄協助；不是獨立測量。","parent_steps":"個位：8×6＝48，寫8，向十位進4；十位：0×6＋進位4＝4，寫4；百位：5×6＝30，寫0，向千位進3；將進位3寫在千位。"},{"id":"PA03","facet":"zero","prompt":"每組609，共4組。先圈被乘數的0所在位，再完成一列積直式，指出這位如何接收其他位的進位。","answer":"609×4＝2436","operands":[609,4],"product":2436,"curriculum_codes":["N-3-3"],"source_educational_status":"pending","requires_manual_review":true,"notes":"位值、圈選、解釋及操作需成人核對。","parent_steps":"個位：9×4＝36，寫6，向十位進3；十位：0×4＋進位3＝3，寫3；百位：6×4＝24，寫4，向千位進2；將進位2寫在千位。"},{"id":"PB03","facet":"zero","prompt":"每組702，共6組。先圈被乘數的0所在位，再完成一列積直式，指出這位如何接收其他位的進位。把材料記錄翻譯為直式，圈兩份作品同一位的量。","answer":"702×6＝4212","operands":[702,6],"product":4212,"curriculum_codes":["N-3-3"],"source_educational_status":"pending","requires_manual_review":true,"notes":"位值、圈選、解釋及操作需成人核對。","parent_steps":"個位：2×6＝12，寫2，向十位進1；十位：0×6＋進位1＝1，寫1；百位：7×6＝42，寫2，向千位進4；將進位4寫在千位。"},{"id":"PC03","facet":"zero","prompt":"每組406，共5組。先圈被乘數的0所在位，再完成一列積直式，指出這位如何接收其他位的進位。","answer":"406×5＝2030","operands":[406,5],"product":2030,"curriculum_codes":["N-3-3"],"source_educational_status":"pending","requires_manual_review":true,"notes":"位值、圈選、解釋及操作需成人核對。","parent_steps":"個位：6×5＝30，寫0，向十位進3；十位：0×5＋進位3＝3，寫3；百位：4×5＝20，寫0，向千位進2；將進位2寫在千位。"}];const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function groupTable(q,i,paper=false){const places=['千','百','十','個'],rows=Array.from({length:q.operands[1]},(_,j)=>'第'+(j+1)+'組').concat('合起來');return '<table class="'+(paper?'paper':'grid')+'"><caption>第'+(i+1)+'題空白組數位值表</caption><thead><tr><th scope="col">記錄</th>'+places.map(x=>'<th scope="col">'+x+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr><th scope="row">'+r+'</th>'+places.map(c=>'<td>'+(paper?'':'<input type="text" inputmode="numeric" maxlength="2" aria-label="第'+(i+1)+'題'+r+c+'位">')+'</td>').join('')+'</tr>').join('')+'</tbody></table>'}
+function shuffle(a,seed){a=a.slice();let s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;let j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}function render(){let n=Number(document.querySelector('#seed').value);if(!Number.isSafeInteger(n)||n<1||n>2147483646){alert('請輸入 1 至 2147483646 的練習編號。');return}let order=shuffle(items,n);document.querySelector('#sheetSeed').textContent='練習編號 '+n+'　｜　4 題候選';document.querySelector('#summary').textContent='';document.querySelector('#questions').innerHTML=order.map((q,i)=>'<article class="item" data-id="'+esc(q.id)+'"><strong>'+(i+1)+'. </strong>'+esc(q.prompt)+'<label>填寫積 <input type="text" inputmode="numeric" aria-label="第'+(i+1)+'題的積"></label><button type="button">檢查積</button><p class="feedback" role="status"></p><div class="digit-mark">圈記被乘數中的數字（成人核對）： '+String(q.operands[0]).split('').map((d,j)=>'<button type="button" class="digit" aria-pressed="false" aria-label="第'+(i+1)+'題被乘數第'+(j+1)+'個數字'+d+'">'+d+'</button>').join('')+'</div><details class="group-section"><summary>展開空白組數位值表</summary><p>各組和合起來的記錄供成人核對；交換、連線及實物操作另行確認。</p>'+groupTable(q,i)+'</details><div class="print-only">'+groupTable(q,i,true)+'<div>一列直式及說明：</div><div class="notes"></div></div><label>記錄直式、交換與說明<textarea aria-label="第'+(i+1)+'題記錄"></textarea></label><label>成人記錄本題協助情況 <select aria-label="第'+(i+1)+'題成人記錄協助情況"><option value="">尚未記錄</option><option>成人示範第一步</option><option>其他協助</option><option>成人記錄未提供協助</option></select></label><p>協助情況由成人填寫，僅保留本頁，重新整理清除；不能單憑選項判定獨立作答。位值、直式、說明和實物操作需成人核對。</p><div class="answer" hidden>參考答案：'+esc(q.answer)+'</div></article>').join('');
+document.querySelectorAll('article').forEach((el,i)=>{const input=el.querySelector('input'),feedback=el.querySelector('.feedback');input.oninput=()=>{feedback.textContent=''};el.querySelectorAll('.digit').forEach(b=>{b.onclick=()=>b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true')});el.querySelector('button').onclick=()=>{const s=input.value.normalize('NFKC').trim();feedback.textContent=!/^\d+$/.test(s)?'請填入數字後再檢查。':Number(s)===order[i].product?'積正確；其他要求仍請成人核對。':'積需要再檢查；請檢視每一位。'}});
+document.querySelector('#key').innerHTML='<h2>家長參考答案</h2><ol>'+order.map(q=>'<li>'+esc(q.answer)+'；每組'+q.operands[0]+'，共'+q.operands[1]+'組。'+(q.id==='PG03'?'原題可示範第一步，請記錄提示。':'')+'<br>'+esc(q.parent_steps)+'<br>被乘數中的0請依原題圈選並由成人核對。'+'</li>').join('')+'</ol>';document.querySelectorAll('.answer').forEach(x=>x.hidden=!document.querySelector('#showAns').checked);document.querySelector('#key').hidden=!document.querySelector('#showKey').checked}document.querySelector('#show').onclick=render;document.querySelector('#new').onclick=()=>{document.querySelector('#seed').value=1+Math.floor(Math.random()*2147483645);render()};document.querySelector('#showAns').onchange=()=>document.querySelectorAll('.answer').forEach(x=>x.hidden=!document.querySelector('#showAns').checked);document.querySelector('#checkAnswered').onclick=()=>{let n=0;document.querySelectorAll('#questions article').forEach(x=>{if([...x.querySelectorAll('input,textarea')].some(v=>v.value.trim())){n++;x.querySelector('button').click()}});document.querySelector('#summary').textContent='已處理 '+n+' 題有填寫的內容；數量欄與其他要求仍請確認。'};render();document.querySelector('#showKey').onchange=e=>document.querySelector('#key').hidden=!e.target.checked;
+</script><script>const EXTRA_DATA=[{"id":"SUP-6-01","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有101個，共2組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[202],"labels":["共有幾個"],"answer":"101×2＝202個。","operands":[101,2]},{"id":"SUP-6-02","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有102個，共3組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[306],"labels":["共有幾個"],"answer":"102×3＝306個。","operands":[102,3]},{"id":"SUP-6-03","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有103個，共4組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[412],"labels":["共有幾個"],"answer":"103×4＝412個。","operands":[103,4]},{"id":"SUP-6-04","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有104個，共5組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[520],"labels":["共有幾個"],"answer":"104×5＝520個。","operands":[104,5]},{"id":"SUP-6-05","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有105個，共6組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[630],"labels":["共有幾個"],"answer":"105×6＝630個。","operands":[105,6]},{"id":"SUP-6-06","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有106個，共7組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[742],"labels":["共有幾個"],"answer":"106×7＝742個。","operands":[106,7]},{"id":"SUP-6-07","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有107個，共8組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[856],"labels":["共有幾個"],"answer":"107×8＝856個。","operands":[107,8]},{"id":"SUP-6-08","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有108個，共2組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[216],"labels":["共有幾個"],"answer":"108×2＝216個。","operands":[108,2]},{"id":"SUP-6-09","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有109個，共3組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[327],"labels":["共有幾個"],"answer":"109×3＝327個。","operands":[109,3]},{"id":"SUP-6-10","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有201個，共4組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[804],"labels":["共有幾個"],"answer":"201×4＝804個。","operands":[201,4]},{"id":"SUP-6-11","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有202個，共5組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[1010],"labels":["共有幾個"],"answer":"202×5＝1010個。","operands":[202,5]},{"id":"SUP-6-12","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有203個，共6組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[1218],"labels":["共有幾個"],"answer":"203×6＝1218個。","operands":[203,6]},{"id":"SUP-6-13","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有204個，共7組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[1428],"labels":["共有幾個"],"answer":"204×7＝1428個。","operands":[204,7]},{"id":"SUP-6-14","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有205個，共8組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[1640],"labels":["共有幾個"],"answer":"205×8＝1640個。","operands":[205,8]},{"id":"SUP-6-15","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有206個，共2組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[412],"labels":["共有幾個"],"answer":"206×2＝412個。","operands":[206,2]},{"id":"SUP-6-16","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有207個，共3組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[621],"labels":["共有幾個"],"answer":"207×3＝621個。","operands":[207,3]},{"id":"SUP-6-17","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有208個，共4組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[832],"labels":["共有幾個"],"answer":"208×4＝832個。","operands":[208,4]},{"id":"SUP-6-18","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有209個，共5組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[1045],"labels":["共有幾個"],"answer":"209×5＝1045個。","operands":[209,5]},{"id":"SUP-6-19","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有301個，共6組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[1806],"labels":["共有幾個"],"answer":"301×6＝1806個。","operands":[301,6]},{"id":"SUP-6-20","origin":"來源題改編變式（待審）","sourceReference":"PG03","prompt":"每組有302個，共7組。列一列乘法直式，記下位值與進位，求共有多少個。圈出被乘數中的0，說明該位的處理。","values":[2114],"labels":["共有幾個"],"answer":"302×7＝2114個。","operands":[302,7]}];
+(function(){'use strict';const data=EXTRA_DATA,$=s=>document.querySelector(s),safe=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const answerControl=$('#showAns')||$('#showAnswer'),commonBatch=$('#checkAnswered');let host=document.createElement('div');host.id='extra-review';document.querySelector('main').appendChild(host);function randomize(items,seed){let a=items.slice(),s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;let j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}function render(){let seed=Number($('#seed').value);if(!Number.isSafeInteger(seed)||seed<1||seed>2147483646)return;let order=randomize(data,seed);host.innerHTML='<section class="page extra-page"><div class="page-head"><h2>本單元補充練習（試用／審查中）</h2><span>練習編號 '+seed+'｜20 題改編候選</span></div><p>這些題目依本單元原題改編；直式、材料操作、單位及理由由成人確認。</p><div class="question-list">'+order.map((q,i)=>'<article class="item extra-item"><strong>補充 '+(i+1)+'. </strong><span class="note">'+safe(q.origin)+'</span><p>'+safe(q.prompt)+'</p>'+q.labels.map((label,j)=>'<label>'+safe(label)+' <input type="text" inputmode="numeric" class="extra-field" data-field="'+j+'"></label> ').join('')+'<label>記錄算式、步驟與理由 <textarea class="extra-note"></textarea></label> <button type="button" class="extra-check controls">檢查填寫</button><p class="extra-feedback" role="status"></p><div class="extra-answer" hidden>參考答案：'+safe(q.answer)+'</div><div class="extra-print">作答與記錄：________________________________________</div></article>').join('')+'</div></section><section class="page key extra-key" hidden><h2>補充練習參考答案</h2>'+order.map((q,i)=>'<p>'+(i+1)+'. '+safe(q.answer)+'</p>').join('')+'</section><button type="button" class="btn controls extra-batch">批改補充練習</button><p class="controls extra-summary" role="status"></p>';host.querySelectorAll('.extra-item').forEach((card,i)=>{let q=order[i],fields=[...card.querySelectorAll('.extra-field')],note=card.querySelector('.extra-note'),feedback=card.querySelector('.extra-feedback');function check(){if(!q.values.length){feedback.textContent=note.value.trim()?'已記錄；估算方法與合理性由成人確認。':'請先記錄估算方法與理由。';return}if(fields.some(x=>!x.value.trim())){feedback.textContent='請先填寫所有數字。';return}let ok=fields.every((x,j)=>{let v=x.value.normalize('NFKC').trim();return /^\d{1,6}$/.test(v)&&Number(v)===q.values[j]});feedback.textContent=ok?'填寫數字正確；算式、材料、單位及理由請成人確認。':'請再檢查題意與數字。'}card.querySelector('.extra-check').onclick=check;[...fields,note].forEach(x=>x.oninput=()=>feedback.textContent='')});let own=host.querySelector('.extra-batch');own.hidden=!!commonBatch;own.onclick=checkAll;toggle()}function toggle(){host.querySelectorAll('.extra-answer').forEach(x=>x.hidden=!answerControl.checked);let key=host.querySelector('.extra-key');if(key)key.hidden=!$('#showKey').checked}$('#show').addEventListener('click',render);answerControl.addEventListener('change',toggle);$('#showKey').addEventListener('change',toggle);function checkAll(){let n=0;host.querySelectorAll('.extra-item').forEach(card=>{if([...card.querySelectorAll('input,textarea')].some(x=>x.value.trim())){n++;card.querySelector('.extra-check').click()}});host.querySelector('.extra-summary').textContent='補充練習已處理 '+n+' 題；算式、操作與理由請成人確認。'}if(commonBatch)commonBatch.addEventListener('click',checkAll);render()})();
+
+const MASTERY_DATA=[{"id":"MA-G3-6-01","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有401個，共2組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[802],"labels":["總個數"],"answer":"401×2＝802個。","operands":[401,2]},{"id":"MA-G3-6-02","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有402個，共3組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[1206],"labels":["總個數"],"answer":"402×3＝1206個。","operands":[402,3]},{"id":"MA-G3-6-03","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有403個，共4組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[1612],"labels":["總個數"],"answer":"403×4＝1612個。","operands":[403,4]},{"id":"MA-G3-6-04","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有404個，共5組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[2020],"labels":["總個數"],"answer":"404×5＝2020個。","operands":[404,5]},{"id":"MA-G3-6-05","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有405個，共6組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[2430],"labels":["總個數"],"answer":"405×6＝2430個。","operands":[405,6]},{"id":"MA-G3-6-06","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有406個，共7組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[2842],"labels":["總個數"],"answer":"406×7＝2842個。","operands":[406,7]},{"id":"MA-G3-6-07","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有407個，共8組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[3256],"labels":["總個數"],"answer":"407×8＝3256個。","operands":[407,8]},{"id":"MA-G3-6-08","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有408個，共2組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[816],"labels":["總個數"],"answer":"408×2＝816個。","operands":[408,2]},{"id":"MA-G3-6-09","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有409個，共3組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[1227],"labels":["總個數"],"answer":"409×3＝1227個。","operands":[409,3]},{"id":"MA-G3-6-10","origin":"精熟候選（待審）","sourceReference":"PG03","prompt":"每組有501個，共4組。列一列直式，記錄位值與進位，求總數。圈出被乘數的0並說明。","values":[2004],"labels":["總個數"],"answer":"501×4＝2004個。","operands":[501,4]}];
+(function(){'use strict';const all=MASTERY_DATA,unit=Number((all[0]?.id||'').match(/^MA-G3-(\d+)-/)?.[1]),separate=unit>=14&&unit<=34&&unit!==30&&unit!==31,data=separate?all.filter(q=>q.values.length):all,physical=separate?all.filter(q=>!q.values.length):[],$=s=>document.querySelector(s),esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function picture(q){if(!q.diagram)return '';let d=q.diagram;if(d.type==='grid'||!d.type)return '<div role="img" aria-label="'+d.rows+'排、每排'+d.cols+'個方格；每格代表1平方公分" style="display:grid;grid-template-columns:repeat('+d.cols+',24px);width:max-content;border-top:1px solid;border-left:1px solid">'+Array.from({length:d.rows*d.cols},()=>'<span aria-hidden="true" style="width:24px;height:24px;box-sizing:border-box;border-right:1px solid;border-bottom:1px solid"></span>').join('')+'</div><p>示意圖；螢幕與列印尺寸未校準。</p>';if(d.type==='angles'){return '<div style="display:flex;flex-wrap:wrap;gap:8px">'+d.angles.map((a,i)=>{let pt=deg=>{let r=deg*Math.PI/180;return [130+a.length*Math.cos(r),130-a.length*Math.sin(r)].map(x=>x.toFixed(3)).join(' ')};return '<figure style="width:140px;margin:0"><figcaption>圖 '+(i?'B':'A')+'</figcaption><svg viewBox="0 0 260 260" role="img" aria-label="圖 '+(i?'B':'A')+' 的兩邊與共同端點"><path d="M '+pt(a.rotation)+' L 130 130 L '+pt(a.rotation+a.opening)+'" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="130" cy="130" r="3"/></svg></figure>'}).join('')+'</div>'}if(d.type==='shape')return '<svg viewBox="0 0 220 180" style="display:block;width:min(220px,100%);height:auto" role="img" aria-label="四邊形示意圖"><g transform="translate(110 90) rotate('+d.rotation+')"><polygon points="'+d.points+'" fill="#d9eef5" stroke="#153a45" stroke-width="3"/></g></svg>';if(d.type==='circle')return '<svg viewBox="0 0 220 180" style="display:block;width:min(220px,100%);height:auto" role="img" aria-label="O是圓心，P、Q在圓周且PQ通過圓心"><circle cx="110" cy="90" r="60" fill="#e5f3f7" stroke="#153a45" stroke-width="2"/><path d="M50 90 H170" stroke="#153a45" stroke-width="2"/><circle cx="110" cy="90" r="3"/><text x="105" y="108">O</text><text x="38" y="85">P</text><text x="173" y="85">Q</text></svg>';if(d.type==='table'){let [a,b,c,e]=d.counts;return '<table><caption>卡片數量（張）</caption><thead><tr><th scope="col">顏色</th><th scope="col">圓形</th><th scope="col">三角形</th></tr></thead><tbody><tr><th scope="row">紅色</th><td>'+a+'</td><td>'+b+'</td></tr><tr><th scope="row">藍色</th><td>'+c+'</td><td>'+e+'</td></tr></tbody></table>'}if(d.type==='netPair')return '<div style="display:flex;flex-wrap:wrap;gap:12px">'+d.nets.map((cells,i)=>'<figure style="margin:0"><figcaption>圖'+(i?'B':'A')+'</figcaption>'+picture({diagram:{type:'net',cells}})+'</figure>').join('')+'</div>';if(d.type==='net'){let set=new Set(d.cells.map(([x,y])=>x+','+y)),edges=[];for(let [x,y] of d.cells)for(let [x1,y1,x2,y2,nx,ny] of [[x,y,x+1,y,x,y-1],[x+1,y,x+1,y+1,x+1,y],[x,y+1,x+1,y+1,x,y+1],[x,y,x,y+1,x-1,y]]){let shared=set.has(nx+','+ny);if(shared&&(nx<x||ny<y))continue;edges.push('<line x1="'+(10+x1*38)+'" y1="'+(10+y1*38)+'" x2="'+(10+x2*38)+'" y2="'+(10+y2*38)+'" stroke="#111" stroke-width="2"'+(shared?' stroke-dasharray="5 4"':'')+'/>')}return '<svg viewBox="0 0 180 140" style="display:block;width:min(180px,100%);height:auto" role="img" aria-label="展開材料，實線剪、虛線摺'+(d.faceLabels?'；'+d.cells.map(([x,y],i)=>esc(d.faceLabels[i])+'在第'+(y+1)+'列第'+(x+1)+'欄').join('、'):'')+'">'+edges.join('')+(d.faceLabels?d.cells.map(([x,y],i)=>'<text x="'+(29+x*38)+'" y="'+(34+y*38)+'" text-anchor="middle" font-size="18">'+esc(d.faceLabels[i])+'</text>').join(''):'')+'</svg><p>需實際剪、摺、用膠帶黏合；列印尺寸未驗證。</p>'}throw Error('Unsupported diagram')}let host=document.createElement('section');host.className='panel controls mastery-review';host.innerHTML='<h2>'+(separate?'紙筆測驗':'精熟測驗')+'（審查草案）</h2><p>這是另外準備的'+data.length+'題或項候選，請完成後交給成人確認；電腦只核對數字或選項，不能判定整體精熟。此草案不隨練習單列印。'+(data.some(q=>q.reusedPracticeMaterial)?'部分圖形或操作與練習相似，可能已曝光；獨立性須由成人確認。':'')+'</p>'+(data[0]&&data[0].id.startsWith('MA-G3-30-')?'<p><a href="g3-u30-mastery-print-draft-20261125.html" target="_blank" rel="noopener">開啟剪拼實作列印草案</a>；部分操作與練習相似，須由成人確認曝光。</p>':'')+(data[0]&&data[0].id.startsWith('MA-G3-31-')?'<p><a href="g3-u31-mastery-print-draft-20261125.html" target="_blank" rel="noopener">開啟剪摺材料列印草案</a>；列印前請由成人保管，材料一旦看過不再視為未見題。</p>':'')+'<button type="button" class="btn mastery-start">開始測驗</button> <button type="button" class="btn ghost mastery-reset" hidden>重新開始（清除本次作答）</button><div class="mastery-questions"></div><button type="button" class="btn mastery-submit" hidden>提交作答</button><p class="mastery-result" role="status"></p><div class="mastery-key" hidden></div>';document.querySelector('main').appendChild(host);let start=host.querySelector('.mastery-start'),reset=host.querySelector('.mastery-reset'),submit=host.querySelector('.mastery-submit'),panel=host.querySelector('.mastery-questions'),result=host.querySelector('.mastery-result'),key=host.querySelector('.mastery-key'),submitted=false,started=false,repeated=false;function begin(){repeated=started;started=true;submitted=false;result.textContent=repeated?'這是重做，不能作首次獨立測量；重新整理或切換單元後紀錄不保留。':'重新整理或切換單元後作答不保留，請由成人記錄首次作答。';key.hidden=true;key.innerHTML='';panel.innerHTML=data.map((q,i)=>'<article class="item mastery-item"><strong>'+(i+1)+'. </strong><p>'+esc(q.prompt)+'</p>'+picture(q)+q.labels.map((x,j)=>'<label>'+esc(x)+' '+(q.options&&q.options[j]?'<select class="mastery-field" data-index="'+j+'"><option value="">請選擇</option>'+q.options[j].map(v=>'<option>'+esc(v)+'</option>').join('')+'</select>':'<input type="text" inputmode="numeric" class="mastery-field" data-index="'+j+'">')+'</label> ').join('')+'<label>記錄算式、步驟與理由 <textarea class="mastery-note"></textarea></label><p class="mastery-feedback" role="status"></p></article>').join('');start.hidden=true;reset.hidden=false;submit.hidden=false;submit.disabled=false}start.onclick=begin;reset.onclick=begin;submit.onclick=()=>{if(submitted)return;let cards=[...panel.querySelectorAll('.mastery-item')],missing=false;cards.forEach((card,i)=>{let q=data[i],fields=[...card.querySelectorAll('.mastery-field')],note=card.querySelector('.mastery-note');if((q.values.length?fields.some(x=>!x.value.trim()):!note.value.trim())||(q.requireNote&&!note.value.trim()))missing=true});if(missing){result.textContent='請先完成每題的數字、選項或文字紀錄。';return}let checked=0,pending=0;cards.forEach((card,i)=>{let q=data[i],fields=[...card.querySelectorAll('.mastery-field')],note=card.querySelector('.mastery-note'),f=card.querySelector('.mastery-feedback');if(q.values.length){let ok=fields.every((x,j)=>{let v=x.value.normalize('NFKC').trim();return typeof q.values[j]==='string'?v===q.values[j]:/^\d{1,6}$/.test(v)&&Number(v)===q.values[j]});if(ok)checked++;f.textContent=ok?'填寫內容核對正確；步驟及理由待成人確認。':'填寫內容需要再檢查；步驟及理由待成人確認。'}else{pending++;f.textContent='實作、方法與理由待成人確認。'}[...fields,note].forEach(x=>x.disabled=true)});submitted=true;submit.disabled=true;result.textContent='已提交'+(repeated?'（重做，不作首次獨立測量）':'')+'；數字或選項核對正確 '+checked+' 題'+(pending?'，另有 '+pending+' 項待成人確認':'')+'。直式、實物、理由及是否精熟均須真人確認。';key.innerHTML='<h3>成人參考答案</h3>'+data.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('');key.hidden=false};if(physical.length){let extra=document.createElement('details');extra.className='panel controls mastery-hands-on';extra.innerHTML='<summary>實物操作（選做，須成人確認）</summary><p>可自行記錄實際操作；不計入紙筆測驗，電腦不判定操作結果。重新整理後紀錄不保留。</p>'+physical.map((q,i)=>'<article class="item"><p><strong>'+(i+1)+'. </strong>'+esc(q.prompt)+'</p><label>操作與觀察紀錄 <textarea></textarea></label></article>').join('');document.querySelector('main').appendChild(extra)}})();
+
+document.getElementById("directUnit").addEventListener("change",function(){location.href=this.value});</script></body></html>

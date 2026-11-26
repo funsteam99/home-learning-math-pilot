@@ -1,0 +1,206 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三年級｜第 16 單元：大於1至2的分數活動（25題候選）（本機審查草案）</title><style>
+/* Layout: controls on top; each practice sheet is a paper-like card of two question columns.
+   Palette: warm paper neutrals with one deep-blue accent; red reserved for answers. */
+:root {
+  --bg: #f4f2ec;
+  --fg: #1c2330;
+  --muted: #5f6772;
+  --card: #ffffff;
+  --line: #d6d0c2;
+  --accent: #2d5b86;
+  --on-accent: #ffffff;
+  --ans: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+    --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+  --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; min-width: 0; }
+h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0 0 8px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0 0 16px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.row[hidden] { display: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label { font-size: 14px; color: var(--muted); }
+select, input[type="number"] {
+  font: inherit;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 0;
+}
+select { flex: 1 1 220px; max-width: 100%; }
+input[type="number"] { width: 150px; max-width: 100%; }
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg); font-size: 14px; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.page {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 16px;
+}
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { grid-column: 1 / -1; margin: 0 0 2px; }
+.fill { display: inline-block; min-width: 4em; border-bottom: 1px solid var(--line); }
+.page-foot {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 22px;
+  row-gap: 2px;
+}
+.q { display: flex; align-items: center; gap: 6px; min-width: 0; min-height: 30px; font-size: 16px; }
+.no { width: 2.2em; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.pt { min-width: 0; overflow-wrap: anywhere; }
+.blank { flex: 1 1 36px; min-width: 36px; border-bottom: 1px solid var(--line); height: 1.2em; }
+.ans { display: none; color: var(--ans); font-weight: 700; flex: none; }
+.show-ans .ans { display: inline; }
+.pic .q { min-height: 84px; }
+.pic svg { flex: none; width: 96px; height: 80px; color: var(--fg); }
+
+.key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mastery ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mastery li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; }
+.mastery li .q { min-height: 0; }
+.mastery input {
+  font: inherit;
+  width: 96px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.fix { color: var(--ans); font-weight: 700; display: none; }
+.mastery li.wrong .fix { display: inline; }
+.result { font-weight: 700; font-size: 16px; }
+
+@media (max-width: 480px) {
+  .page-head { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+@media print {
+  :root:root {
+    --bg: #ffffff; --fg: #000000; --muted: #333333; --card: #ffffff;
+    --line: #777777; --accent: #000000; --on-accent: #ffffff; --ans: #000000;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #ffffff; color: #000000; }
+  .wrap > h1, .lede, .panel, .mastery, .note { display: none !important; }
+  .page { border: 0; border-radius: 0; margin: 0; padding: 0; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .page-head { margin-bottom: 6px; padding-bottom: 6px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); row-gap: 0; }
+  .text .q { height: 5.9mm; min-height: 0; font-size: 12pt; }
+  .pic .q { height: 25mm; min-height: 0; font-size: 12pt; }
+  .pic svg { width: 26mm; height: 22mm; }
+  .page-foot { font-size: 9pt; }
+  .answers { break-before: page; }
+  .answers[hidden] { display: block !important; }
+  .show-ans .ans { display: inline !important; }
+}
+
+.group-0 .smallbtn.selected{background:#a13a2a;color:#fff}.group-1 .smallbtn.selected{background:#245b92;color:#fff}.pair-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(18px,1fr));max-width:360px}.pair-col{display:grid;text-align:center;line-height:1.3}.place-table{border-collapse:collapse;margin:12px 0}.place-table th,.place-table td{border:1px solid var(--line);padding:4px;text-align:center}.place-table input[type=number]{width:65px}.stack-front{display:flex;align-items:end;gap:4px;min-height:100px}.stack-col{display:flex;flex-direction:column;gap:2px}.stack-block{display:block;width:24px;height:24px;border:1px solid var(--fg);background:var(--bg)}.stack-top{display:flex;gap:4px}.stack-input input[type=number]{width:70px}.classify-list{display:flex;flex-wrap:wrap;gap:8px}.class-object{border:1px solid var(--line);padding:8px;border-radius:6px}.class-object select{display:block;width:95px;min-height:38px}.compare-bars{max-width:240px}.compare-line{display:flex;align-items:center;gap:8px;margin:7px 0}.compare-track{width:200px}.compare-bar{height:16px;background:var(--accent)}.compare-bar.second{margin-left:32px}.compare-bars.aligned .compare-bar.second{margin-left:0}.measure-scroll{overflow-x:auto}.measure-strip{height:22px;background:var(--accent);margin-bottom:5px}.measure-slots{display:flex;width:max-content}.measure-slot{width:24px;height:24px;min-width:24px;padding:0;border:1px dashed var(--line);background:var(--card);color:var(--fg);cursor:pointer}.measure-slot.selected{background:var(--accent);color:var(--on-accent)}.coin{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--fg);border-radius:50%;font-weight:bold}.cointray input[type=number]{width:65px}.tenbar{display:inline-flex;border:1px solid var(--fg)}.unit-square{display:inline-block;width:9px;height:9px;border:1px solid var(--fg);background:var(--card)}.duration-row{display:flex;align-items:center;gap:8px}.duration-name{width:6em;flex:none}.duration-bar{display:inline-block;height:12px;background:var(--accent);vertical-align:middle}.dot.square{border-radius:0}.dot.crossed{position:relative}.dot.crossed:after{content:"×";position:absolute;font-size:27px;line-height:18px;color:var(--ans);left:1px;top:0}[hidden]{display:none!important}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.item{border-bottom:1px solid var(--line);padding:10px 0;min-width:0}.item p{margin:5px 0}.item input[type=number]{width:75px;min-height:40px}.dots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.dot{width:18px;height:18px;border-radius:50%;background:var(--fg);display:inline-block}.options{display:flex;gap:6px;flex-wrap:wrap}.smallbtn{font:inherit;min-width:40px;min-height:40px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);cursor:pointer}.smallbtn.selected{background:var(--accent);color:var(--on-accent)}.drawbtn{border-radius:50%;padding:0;width:40px}.feedback{color:var(--ans);font-weight:bold}.pair{display:flex;align-items:center;gap:6px;margin:4px 0}.pair select{flex:0 1 95px;min-height:38px}.resultbox{padding:12px;background:var(--bg);border-radius:6px}.mastery input[type=radio],.mastery input[type=checkbox]{width:18px;min-height:0;height:18px}.mastery fieldset{border:0;padding:0}.mastery label{color:var(--fg)}.item label{color:var(--fg)}.page-head{display:block}.note{line-height:1.6}@media(max-width:600px){.question-list{grid-template-columns:1fr}}@media print{.question-list{grid-template-columns:1fr 1fr}.panel.mastery{display:none!important}}
+
+.u1-print{display:none}.u1-key-draw svg{vertical-align:middle;margin:1px}.u1-key-draw{display:block}
+@media print{.u1-item>*:not(.u1-print){display:none!important}.u1-item .u1-print{display:block}.u1-item{break-inside:avoid;page-break-inside:avoid}.u1-print p{margin:3px 0}.u1-dots{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}.u1-drawbox{border:1px solid #000;height:21mm;margin:4px 0}.u1-options{display:flex;gap:14mm;margin:4mm 0;font-size:14pt}.u1-key-draw{break-inside:avoid}.page:has(.u1-item){break-after:auto}.page:has(.u1-item) .page-head span{display:none}}
+.progress-notice{margin:0 0 16px;padding:15px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}.progress-notice h2{margin:0 0 2px}.progress-notice p{margin:6px 0}.progress-date{font-size:13px;color:var(--muted)}.progress-notice summary{cursor:pointer;color:var(--accent);font-weight:700;padding:6px 0}.progress-notice li{margin:6px 0}.progress-notice ul{padding-left:1.4em;margin:6px 0}@media print{.progress-notice{display:none!important}}
+.item textarea{display:block;width:100%;min-height:5em;box-sizing:border-box;font:inherit}.feedback{font-weight:bold}@media print{.controls{display:none!important}}.fraction-scroll{max-width:100%;overflow-x:auto}.fraction-scroll:focus-visible{outline:3px solid var(--accent);outline-offset:2px}.fraction-strip{display:flex;min-width:max-content;margin:6px 0}.fraction-strip button{font:inherit;min-width:44px;min-height:44px}.fraction-strip button[aria-pressed="true"]{background:var(--accent);color:var(--bg)}.fraction-print{display:none}@media print{.question-list{grid-template-columns:1fr}.fraction-print{display:block}.fraction-print-row{display:flex;width:100%;border-left:1px solid #000}.fraction-print-row span{display:block;flex:1 1 0;min-width:0;height:7mm;border:1px solid #000;border-left:0}}.key[hidden]{display:none!important}
+article.item>label>input[type="text"],article.item>label>input:not([type]),article.question>label>input[type="text"]{font:inherit;box-sizing:border-box;width:min(100%,10em);min-height:40px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+article.item>button.check{font:inherit;min-height:44px;padding:8px 16px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}article.item>button.check:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.local-print-notice{display:none}@media print{.local-print-notice{display:block;font-size:10pt}}
+.mastery-review{margin-top:20px}.mastery-item{margin:14px 0}.mastery-item>label{display:block;margin:8px 0}.mastery-item textarea{width:100%;min-height:4em;box-sizing:border-box;font:inherit}.mastery-result{font-weight:bold}</style></head><body><main class="wrap"><h1>數學自動學習系統</h1><p class="lede"><a href="https://shezi.org.tw/#resources" target="_top">回學習入口</a>　｜　三年級：選擇單元，產生練習單。同一個編號可以重現同一份題目。</p><p class="local-print-notice">試用／審查中：本單元為候選內容，題意、答案、教學及列印仍待確認；口讀、理由與實物操作請成人核對。</p><section class="panel controls"><div class="row"><label for="directUnit">單元</label><select id="directUnit"><option value="g3-direct-u01-draft-20261113.html">第 1 單元：10000 以內的數與千位</option><option value="g3-direct-u02-draft-20261113.html">第 2 單元：位值換算與數量表示（另有20題改編候選）</option><option value="g3-direct-u03-draft-20261113.html">第 3 單元：多次進位直式加法（另有20題改編候選）</option><option value="g3-direct-u04-draft-20261113.html">第 4 單元：多次退位直式減法（另有20題改編候選）</option><option value="g3-direct-u05-draft-20261113.html">第 5 單元：二三位數乘一位數（另有20題改編候選）</option><option value="g3-direct-u06-draft-20261113.html">第 6 單元：被乘數含 0 的乘法（另有20題改編候選）</option><option value="g3-direct-u07-draft-20261113.html">第 7 單元：整除與乘除關係（另有20題改編候選）</option><option value="g3-direct-u08-draft-20261113.html">第 8 單元：有餘數的除法（另有20題改編候選）</option><option value="g3-direct-u09-draft-20261113.html">第 9 單元：除法直式（另有20題改編候選）</option><option value="g3-direct-u10-draft-20261113.html">第 10 單元：含 0 的除法直式（另有20題改編候選）</option><option value="g3-direct-u11-draft-20261113.html">第 11 單元：兩步驟連乘（另有20題改編候選）</option><option value="g3-direct-u12-draft-20261113.html">第 12 單元：加減與除的兩步驟（另有20題改編候選）</option><option value="g3-direct-u13-draft-20261113.html">第 13 單元：生活四則估算與合理性（另有20題改編候選）</option><option value="g3-direct-u14-draft-20261113.html">第 14 單元：單位分數點數與同分母比較（45題候選）</option><option value="g3-direct-u15-draft-20261113.html">第 15 單元：同分母加減及和等於1（45題候選）</option><option value="g3-direct-u16-draft-20261113.html" selected>第 16 單元：大於1至2的分數活動（25題候選）</option><option value="g3-direct-u17-draft-20261113.html">第 17 單元：十分位與一位小數比較（23題候選）</option><option value="g3-direct-u18-draft-20261113.html">第 18 單元：一位小數直式加減與解題（25題候選）</option><option value="g3-direct-u19-draft-20261113.html">第 19 單元：從0開始的整數數線報讀標示（30題候選）</option><option value="g3-direct-u20-draft-20261113.html">第 20 單元：數線比較與加減（30題候選）</option><option value="g3-direct-u21-draft-20261113.html">第 21 單元：毫米實測估測與長度換算（19題候選）</option><option value="g3-direct-u22-draft-20261113.html">第 22 單元：角的操作比較與直角（25題候選）</option><option value="g3-direct-u23-draft-20261113.html">第 23 單元：平方公分實測與方格點數面積（28題候選）</option><option value="g3-direct-u24-draft-20261113.html">第 24 單元：公升毫升實測估測與換算加減（44題候選）</option><option value="g3-direct-u25-draft-20261113.html">第 25 單元：公斤公克實測估測與換算加減（44題候選）</option><option value="g3-direct-u26-draft-20261113.html">第 26 單元：日時分秒的實測與換算（30題候選）</option><option value="g3-direct-u27-draft-20261113.html">第 27 單元：同單位時間及時分無進退位加減（25題候選）</option><option value="g3-direct-u28-draft-20261113.html">第 28 單元：正長方形邊角特徵與斜擺辨認（20題候選）</option><option value="g3-direct-u29-draft-20261113.html">第 29 單元：圓心半徑直徑與圓規作圖（24題候選）</option><option value="g3-direct-u30-draft-20261113.html">第 30 單元：平面分割與重組（紙筆10題、實作6項）</option><option value="g3-direct-u31-draft-20261113.html">第 31 單元：展開圖與立體形體（紙筆10題、實作4項）</option><option value="g3-direct-u32-draft-20261113.html">第 32 單元：一維模式觀察、操作與說明（29題候選）</option><option value="g3-direct-u33-draft-20261113.html">第 33 單元：生活一維二維表格報讀（35題候選）</option><option value="g3-direct-u34-draft-20261113.html">第 34 單元：表格製作與模式呈現（16題候選）</option><option value="g3-direct-u35-draft-20261113.html">第 35 單元：全年綜合複習與必要操作確認（52題候選）</option></select></div><div class="row"><label for="seed">練習編號</label><input id="seed" type="number" min="1" max="2147483646" value="1"><button class="btn" id="new" type="button">產生新練習單</button><button class="btn ghost" id="show" type="button">依編號重新產生</button></div><div class="row"><label class="check"><input id="showAns" type="checkbox">顯示參考答案</label><label class="check"><input id="showKey" type="checkbox">顯示答案頁</label></div><p>編號只重排現有 25 題；切換單元或重新產生會清除作答。</p><strong>試用／審查中：5 題來源候選與 20 題改編變式，不是完整單元或精熟。</strong><p>本單元以兩個相同整體觀察大於1至2的分數；真實紙條、算式與理由由成人確認。</p></section><div id="questions"></div><section class="page controls"><button class="btn" id="checkAnswered" type="button">批改已作答題目</button><p id="summary" role="status"></p><p>紙條、算式及題意均由成人確認。</p></section><section class="panel controls"><p><a href="g3-u16-paper-exam-print-20261125.html" target="_blank" rel="noopener">開啟第16單元紙筆測驗列印草案</a>；題目仍待審查。</p></section></main><script>const SOURCE=[{"id":"P04","facet":"over","prompt":"用每整條同長的7等分紙條，一小段表示1/7條。先用兩個等長整體框表示12/7條，再加2/7條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"14/7條；等於2","n":7,"a":12,"b":2,"result":14},{"id":"P08","facet":"over","prompt":"用每整條同長的3等分紙條，一小段表示1/3條。先用兩個等長整體框表示4/3條，再加2/3條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"6/3條；等於2","n":3,"a":4,"b":2,"result":6},{"id":"P16","facet":"over","prompt":"用每整條同長的5等分紙條，一小段表示1/5條。先用兩個等長整體框表示6/5條，再加4/5條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"10/5條；等於2","n":5,"a":6,"b":4,"result":10},{"id":"P20","facet":"over","prompt":"用每整條同長的9等分紙條，一小段表示1/9條。先用兩個等長整體框表示14/9條，再加4/9條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"18/9條；等於2","n":9,"a":14,"b":4,"result":18},{"id":"X04","facet":"over","prompt":"用每整條同長的8等分紙條，一小段表示1/8條。替材料員做一張可由作品核對的長度標籤，保留單位段與整體框。先用兩個等長整體框表示11/8條，再加2/8條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"13/8條；大於1且小於2","n":8,"a":11,"b":2,"result":13},{"id":"ADAPTED-01","facet":"over","prompt":"用每整條同長的3等分紙條，一小段表示1/3條。先用兩個等長整體框表示4/3條，再加1/3條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"5/3條；大於1且小於2","n":3,"a":4,"b":1,"result":5,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-02","facet":"over","prompt":"用每整條同長的4等分紙條，一小段表示1/4條。先用兩個等長整體框表示5/4條，再加1/4條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"6/4條；大於1且小於2","n":4,"a":5,"b":1,"result":6,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-03","facet":"over","prompt":"用每整條同長的4等分紙條，一小段表示1/4條。先用兩個等長整體框表示5/4條，再加3/4條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"8/4條；等於2","n":4,"a":5,"b":3,"result":8,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-04","facet":"over","prompt":"用每整條同長的5等分紙條，一小段表示1/5條。先用兩個等長整體框表示6/5條，再加1/5條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"7/5條；大於1且小於2","n":5,"a":6,"b":1,"result":7,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-05","facet":"over","prompt":"用每整條同長的6等分紙條，一小段表示1/6條。先用兩個等長整體框表示7/6條，再加1/6條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"8/6條；大於1且小於2","n":6,"a":7,"b":1,"result":8,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-06","facet":"over","prompt":"用每整條同長的6等分紙條，一小段表示1/6條。先用兩個等長整體框表示7/6條，再加5/6條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"12/6條；等於2","n":6,"a":7,"b":5,"result":12,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-07","facet":"over","prompt":"用每整條同長的7等分紙條，一小段表示1/7條。先用兩個等長整體框表示8/7條，再加1/7條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"9/7條；大於1且小於2","n":7,"a":8,"b":1,"result":9,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-08","facet":"over","prompt":"用每整條同長的7等分紙條，一小段表示1/7條。先用兩個等長整體框表示8/7條，再加6/7條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"14/7條；等於2","n":7,"a":8,"b":6,"result":14,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-09","facet":"over","prompt":"用每整條同長的8等分紙條，一小段表示1/8條。先用兩個等長整體框表示9/8條，再加1/8條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"10/8條；大於1且小於2","n":8,"a":9,"b":1,"result":10,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-10","facet":"over","prompt":"用每整條同長的8等分紙條，一小段表示1/8條。先用兩個等長整體框表示9/8條，再加7/8條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"16/8條；等於2","n":8,"a":9,"b":7,"result":16,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-11","facet":"over","prompt":"用每整條同長的9等分紙條，一小段表示1/9條。先用兩個等長整體框表示10/9條，再加1/9條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"11/9條；大於1且小於2","n":9,"a":10,"b":1,"result":11,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-12","facet":"over","prompt":"用每整條同長的9等分紙條，一小段表示1/9條。先用兩個等長整體框表示10/9條，再加8/9條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"18/9條；等於2","n":9,"a":10,"b":8,"result":18,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-13","facet":"over","prompt":"用每整條同長的10等分紙條，一小段表示1/10條。先用兩個等長整體框表示11/10條，再加1/10條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"12/10條；大於1且小於2","n":10,"a":11,"b":1,"result":12,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-14","facet":"over","prompt":"用每整條同長的10等分紙條，一小段表示1/10條。先用兩個等長整體框表示11/10條，再加9/10條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"20/10條；等於2","n":10,"a":11,"b":9,"result":20,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-15","facet":"over","prompt":"用每整條同長的4等分紙條，一小段表示1/4條。先用兩個等長整體框表示6/4條，再加1/4條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"7/4條；大於1且小於2","n":4,"a":6,"b":1,"result":7,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-16","facet":"over","prompt":"用每整條同長的5等分紙條，一小段表示1/5條。先用兩個等長整體框表示7/5條，再加2/5條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"9/5條；大於1且小於2","n":5,"a":7,"b":2,"result":9,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-17","facet":"over","prompt":"用每整條同長的6等分紙條，一小段表示1/6條。先用兩個等長整體框表示8/6條，再加3/6條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"11/6條；大於1且小於2","n":6,"a":8,"b":3,"result":11,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-18","facet":"over","prompt":"用每整條同長的8等分紙條，一小段表示1/8條。先用兩個等長整體框表示10/8條，再加3/8條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"13/8條；大於1且小於2","n":8,"a":10,"b":3,"result":13,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-19","facet":"over","prompt":"用每整條同長的7等分紙條，一小段表示1/7條。先用兩個等長整體框表示9/7條，再加2/7條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"11/7條；大於1且小於2","n":7,"a":9,"b":2,"result":11,"origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"ADAPTED-20","facet":"over","prompt":"用每整條同長的9等分紙條，一小段表示1/9條。先用兩個等長整體框表示11/9條，再加2/9條。親自分開放在兩框，寫合量與1、2的關係，不改寫帶分數。","answer":"13/9條；大於1且小於2","n":9,"a":11,"b":2,"result":13,"origin":"來源題改編變式（待審）","sourceReference":"P04"}];
+'use strict';
+const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function shuffle(items,seed){let a=items.slice(),s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;let j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}
+function number(value){let s=String(value).normalize('NFKC').trim();return /^\d{1,4}$/.test(s)?Number(s):NaN}
+function printStrips(q,rows){return '<div class="fraction-print" aria-hidden="true"><p>紙條圖（空白供標記）</p>'+Array.from({length:rows},(_,i)=>'<div>第 '+(i+1)+' 條<div class="fraction-print-row">'+Array.from({length:q.n},()=>'<span></span>').join('')+'</div></div>').join('')+'</div>'}
+function question(q,i){let fields='<label>合量分子 <input class="numerator" type="text" inputmode="numeric"></label> <label>用題目等分表示的分母 <input class="denominator" type="text" inputmode="numeric"></label> <label>與 1、2 的關係 <select class="relation"><option value="">請選擇</option><option>大於1且小於2</option><option>等於2</option></select></label>';return '<article class="item" data-id="'+esc(q.id)+'"><strong>'+(i+1)+'. </strong>'+(q.origin?'<span class="note">'+esc(q.origin)+'</span>':'')+'<p>'+esc(q.prompt)+'</p>'+fields+printStrips(q,2)+' <button class="check controls" type="button">檢查填寫</button><p class="feedback" role="status"></p><details class="controls"><summary>線上等分紙條示意（不取代實物）</summary><p>點選或取消標記格子，將數量分別放在兩個相同整體中；每條紙條一樣長。</p><div class="fraction-scroll" role="region" tabindex="0" aria-label="等分紙條，可水平捲動"><div class="strips"></div></div><button class="reset-model" type="button">清除標記</button><p class="strip-status" role="status"></p></details><label>記錄算式、標籤與理由 <textarea aria-label="記錄算式、標籤與理由"></textarea></label><p class="note">網頁只核對指定數字與符號；紙條操作及說明請成人確認。</p><div class="answer" hidden>參考答案：'+esc(q.answer)+'</div></article>'}
+function bindModel(card,q){const strips=card.querySelector('.strips'),status=card.querySelector('.strip-status'),rows=2;function reset(){strips.innerHTML='';strips.dataset.marked='0';let marked=Array(rows).fill(0);for(let i=0;i<rows;i++){let row=document.createElement('div');row.className='fraction-strip';row.setAttribute('role','group');row.setAttribute('aria-label','第 '+(i+1)+' 條紙條');for(let j=0;j<q.n;j++){let b=document.createElement('button');b.type='button';b.textContent='第 '+(j+1)+' 段';b.setAttribute('aria-pressed','false');b.onclick=()=>{let on=b.getAttribute('aria-pressed')!=='true';b.setAttribute('aria-pressed',String(on));marked[i]+=on?1:-1;strips.dataset.marked=String(marked.reduce((a,v)=>a+v,0));status.textContent=marked.map((v,k)=>'第 '+(k+1)+' 條標記 '+v+' 段').join('；')};row.appendChild(b)}strips.appendChild(row)}status.textContent='尚未標記。'}card.querySelector('.reset-model').onclick=reset;reset()}
+function render(items,n){$('#questions').innerHTML=Array.from({length:Math.ceil(items.length/30)},(_,page)=>'<section class="page"><div class="page-head"><h2>第 16 單元：大於1至2的分數活動</h2><span>練習編號 '+esc(n)+'　｜　第 '+(page+1)+' / '+Math.ceil(items.length/30)+' 頁</span></div><div class="question-list">'+items.slice(page*30,page*30+30).map((q,i)=>question(q,page*30+i)).join('')+'</div></section>').join('')+'<section class="page key" id="key" hidden><h2>家長參考答案</h2>'+items.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('')+'</section>';document.querySelectorAll('#questions article').forEach((card,i)=>{let q=items[i],f=card.querySelector('.feedback');bindModel(card,q);card.querySelector('.check').onclick=()=>{const fields=[...card.querySelectorAll('input,select')];if(fields.some(x=>!x.value.trim())){f.textContent='請先完成數字與選擇欄位。';return}let get=s=>card.querySelector(s)?.value||'',ok=number(get('.numerator'))===q.result&&number(get('.denominator'))===q.n&&get('.relation')===(q.result===2*q.n?'等於2':'大於1且小於2');f.textContent=ok?'填寫的數字或符號正確；材料操作與理由請成人確認。':'請再檢查填寫。'};card.querySelectorAll('input,select').forEach(x=>x.oninput=()=>f.textContent='')});toggle()}
+function toggle(){document.querySelectorAll('#questions .answer').forEach(x=>x.hidden=!$('#showAns').checked);let key=$('#key');if(key)key.hidden=!$('#showKey').checked}
+$('#showAns').onchange=toggle;$('#showKey').onchange=toggle;$('#show').onclick=()=>{let n=Number($('#seed').value);if(!Number.isSafeInteger(n)||n<1||n>2147483646){alert('請輸入 1 至 2147483646 的練習編號。');return}$('#summary').textContent='';render(shuffle(SOURCE,n),n)};$('#new').onclick=()=>{$('#seed').value=1+Math.floor(Math.random()*2147483645);$('#show').click()};$('#checkAnswered').onclick=()=>{let n=0;document.querySelectorAll('#questions article').forEach(card=>{if([...card.querySelectorAll('input,select,textarea')].some(x=>x.value.trim())||Number(card.querySelector('.strips').dataset.marked)>0){n++;card.querySelector('.check').click()}});$('#summary').textContent='已處理 '+n+' 題填寫或標記；材料與理由請成人確認。'};$('#show').click();
+</script><script>const MASTERY_DATA=[{"id":"MA-G3-16-01","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分4等份。先有5/4條，再加2/4條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[7,4,"介於1與2之間"],"answer":"5/4＋2/4＝7/4條，介於1與2之間。","key":[4,5,2,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-02","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分5等份。先有6/5條，再加2/5條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[8,5,"介於1與2之間"],"answer":"6/5＋2/5＝8/5條，介於1與2之間。","key":[5,6,2,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-03","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分5等份。先有6/5條，再加3/5條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[9,5,"介於1與2之間"],"answer":"6/5＋3/5＝9/5條，介於1與2之間。","key":[5,6,3,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-04","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分5等份。先有7/5條，再加1/5條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[8,5,"介於1與2之間"],"answer":"7/5＋1/5＝8/5條，介於1與2之間。","key":[5,7,1,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-05","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分5等份。先有8/5條，再加1/5條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[9,5,"介於1與2之間"],"answer":"8/5＋1/5＝9/5條，介於1與2之間。","key":[5,8,1,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-06","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分6等份。先有7/6條，再加2/6條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[9,6,"介於1與2之間"],"answer":"7/6＋2/6＝9/6條，介於1與2之間。","key":[6,7,2,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-07","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分6等份。先有7/6條，再加3/6條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[10,6,"介於1與2之間"],"answer":"7/6＋3/6＝10/6條，介於1與2之間。","key":[6,7,3,"between"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-08","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分3等份。先有5/3條，再加1/3條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[6,3,"等於2"],"answer":"5/3＋1/3＝6/3條，等於2。","key":[3,5,1,"equal"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-09","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分4等份。先有6/4條，再加2/4條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[8,4,"等於2"],"answer":"6/4＋2/4＝8/4條，等於2。","key":[4,6,2,"equal"],"options":[null,null,["介於1與2之間","等於2"]]},{"id":"MA-G3-16-10","origin":"精熟候選（待審）","sourceReference":"P04","prompt":"同樣整條各分4等份。先有7/4條，再加1/4條；用兩個整體框說明合量，填合量分子與分母，再判斷與2的關係。","labels":["分子","分母","合量與1、2的關係"],"values":[8,4,"等於2"],"answer":"7/4＋1/4＝8/4條，等於2。","key":[4,7,1,"equal"],"options":[null,null,["介於1與2之間","等於2"]]}];
+(function(){'use strict';const all=MASTERY_DATA,unit=Number((all[0]?.id||'').match(/^MA-G3-(\d+)-/)?.[1]),separate=unit>=14&&unit<=34&&unit!==30&&unit!==31,data=separate?all.filter(q=>q.values.length):all,physical=separate?all.filter(q=>!q.values.length):[],$=s=>document.querySelector(s),esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function picture(q){if(!q.diagram)return '';let d=q.diagram;if(d.type==='grid'||!d.type)return '<div role="img" aria-label="'+d.rows+'排、每排'+d.cols+'個方格；每格代表1平方公分" style="display:grid;grid-template-columns:repeat('+d.cols+',24px);width:max-content;border-top:1px solid;border-left:1px solid">'+Array.from({length:d.rows*d.cols},()=>'<span aria-hidden="true" style="width:24px;height:24px;box-sizing:border-box;border-right:1px solid;border-bottom:1px solid"></span>').join('')+'</div><p>示意圖；螢幕與列印尺寸未校準。</p>';if(d.type==='angles'){return '<div style="display:flex;flex-wrap:wrap;gap:8px">'+d.angles.map((a,i)=>{let pt=deg=>{let r=deg*Math.PI/180;return [130+a.length*Math.cos(r),130-a.length*Math.sin(r)].map(x=>x.toFixed(3)).join(' ')};return '<figure style="width:140px;margin:0"><figcaption>圖 '+(i?'B':'A')+'</figcaption><svg viewBox="0 0 260 260" role="img" aria-label="圖 '+(i?'B':'A')+' 的兩邊與共同端點"><path d="M '+pt(a.rotation)+' L 130 130 L '+pt(a.rotation+a.opening)+'" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="130" cy="130" r="3"/></svg></figure>'}).join('')+'</div>'}if(d.type==='shape')return '<svg viewBox="0 0 220 180" style="display:block;width:min(220px,100%);height:auto" role="img" aria-label="四邊形示意圖"><g transform="translate(110 90) rotate('+d.rotation+')"><polygon points="'+d.points+'" fill="#d9eef5" stroke="#153a45" stroke-width="3"/></g></svg>';if(d.type==='circle')return '<svg viewBox="0 0 220 180" style="display:block;width:min(220px,100%);height:auto" role="img" aria-label="O是圓心，P、Q在圓周且PQ通過圓心"><circle cx="110" cy="90" r="60" fill="#e5f3f7" stroke="#153a45" stroke-width="2"/><path d="M50 90 H170" stroke="#153a45" stroke-width="2"/><circle cx="110" cy="90" r="3"/><text x="105" y="108">O</text><text x="38" y="85">P</text><text x="173" y="85">Q</text></svg>';if(d.type==='table'){let [a,b,c,e]=d.counts;return '<table><caption>卡片數量（張）</caption><thead><tr><th scope="col">顏色</th><th scope="col">圓形</th><th scope="col">三角形</th></tr></thead><tbody><tr><th scope="row">紅色</th><td>'+a+'</td><td>'+b+'</td></tr><tr><th scope="row">藍色</th><td>'+c+'</td><td>'+e+'</td></tr></tbody></table>'}if(d.type==='netPair')return '<div style="display:flex;flex-wrap:wrap;gap:12px">'+d.nets.map((cells,i)=>'<figure style="margin:0"><figcaption>圖'+(i?'B':'A')+'</figcaption>'+picture({diagram:{type:'net',cells}})+'</figure>').join('')+'</div>';if(d.type==='net'){let set=new Set(d.cells.map(([x,y])=>x+','+y)),edges=[];for(let [x,y] of d.cells)for(let [x1,y1,x2,y2,nx,ny] of [[x,y,x+1,y,x,y-1],[x+1,y,x+1,y+1,x+1,y],[x,y+1,x+1,y+1,x,y+1],[x,y,x,y+1,x-1,y]]){let shared=set.has(nx+','+ny);if(shared&&(nx<x||ny<y))continue;edges.push('<line x1="'+(10+x1*38)+'" y1="'+(10+y1*38)+'" x2="'+(10+x2*38)+'" y2="'+(10+y2*38)+'" stroke="#111" stroke-width="2"'+(shared?' stroke-dasharray="5 4"':'')+'/>')}return '<svg viewBox="0 0 180 140" style="display:block;width:min(180px,100%);height:auto" role="img" aria-label="展開材料，實線剪、虛線摺'+(d.faceLabels?'；'+d.cells.map(([x,y],i)=>esc(d.faceLabels[i])+'在第'+(y+1)+'列第'+(x+1)+'欄').join('、'):'')+'">'+edges.join('')+(d.faceLabels?d.cells.map(([x,y],i)=>'<text x="'+(29+x*38)+'" y="'+(34+y*38)+'" text-anchor="middle" font-size="18">'+esc(d.faceLabels[i])+'</text>').join(''):'')+'</svg><p>需實際剪、摺、用膠帶黏合；列印尺寸未驗證。</p>'}throw Error('Unsupported diagram')}let host=document.createElement('section');host.className='panel controls mastery-review';host.innerHTML='<h2>'+(separate?'紙筆測驗':'精熟測驗')+'（審查草案）</h2><p>這是另外準備的'+data.length+'題或項候選，請完成後交給成人確認；電腦只核對數字或選項，不能判定整體精熟。此草案不隨練習單列印。'+(data.some(q=>q.reusedPracticeMaterial)?'部分圖形或操作與練習相似，可能已曝光；獨立性須由成人確認。':'')+'</p>'+(data[0]&&data[0].id.startsWith('MA-G3-30-')?'<p><a href="g3-u30-mastery-print-draft-20261125.html" target="_blank" rel="noopener">開啟剪拼實作列印草案</a>；部分操作與練習相似，須由成人確認曝光。</p>':'')+(data[0]&&data[0].id.startsWith('MA-G3-31-')?'<p><a href="g3-u31-mastery-print-draft-20261125.html" target="_blank" rel="noopener">開啟剪摺材料列印草案</a>；列印前請由成人保管，材料一旦看過不再視為未見題。</p>':'')+'<button type="button" class="btn mastery-start">開始測驗</button> <button type="button" class="btn ghost mastery-reset" hidden>重新開始（清除本次作答）</button><div class="mastery-questions"></div><button type="button" class="btn mastery-submit" hidden>提交作答</button><p class="mastery-result" role="status"></p><div class="mastery-key" hidden></div>';document.querySelector('main').appendChild(host);let start=host.querySelector('.mastery-start'),reset=host.querySelector('.mastery-reset'),submit=host.querySelector('.mastery-submit'),panel=host.querySelector('.mastery-questions'),result=host.querySelector('.mastery-result'),key=host.querySelector('.mastery-key'),submitted=false,started=false,repeated=false;function begin(){repeated=started;started=true;submitted=false;result.textContent=repeated?'這是重做，不能作首次獨立測量；重新整理或切換單元後紀錄不保留。':'重新整理或切換單元後作答不保留，請由成人記錄首次作答。';key.hidden=true;key.innerHTML='';panel.innerHTML=data.map((q,i)=>'<article class="item mastery-item"><strong>'+(i+1)+'. </strong><p>'+esc(q.prompt)+'</p>'+picture(q)+q.labels.map((x,j)=>'<label>'+esc(x)+' '+(q.options&&q.options[j]?'<select class="mastery-field" data-index="'+j+'"><option value="">請選擇</option>'+q.options[j].map(v=>'<option>'+esc(v)+'</option>').join('')+'</select>':'<input type="text" inputmode="numeric" class="mastery-field" data-index="'+j+'">')+'</label> ').join('')+'<label>記錄算式、步驟與理由 <textarea class="mastery-note"></textarea></label><p class="mastery-feedback" role="status"></p></article>').join('');start.hidden=true;reset.hidden=false;submit.hidden=false;submit.disabled=false}start.onclick=begin;reset.onclick=begin;submit.onclick=()=>{if(submitted)return;let cards=[...panel.querySelectorAll('.mastery-item')],missing=false;cards.forEach((card,i)=>{let q=data[i],fields=[...card.querySelectorAll('.mastery-field')],note=card.querySelector('.mastery-note');if((q.values.length?fields.some(x=>!x.value.trim()):!note.value.trim())||(q.requireNote&&!note.value.trim()))missing=true});if(missing){result.textContent='請先完成每題的數字、選項或文字紀錄。';return}let checked=0,pending=0;cards.forEach((card,i)=>{let q=data[i],fields=[...card.querySelectorAll('.mastery-field')],note=card.querySelector('.mastery-note'),f=card.querySelector('.mastery-feedback');if(q.values.length){let ok=fields.every((x,j)=>{let v=x.value.normalize('NFKC').trim();return typeof q.values[j]==='string'?v===q.values[j]:/^\d{1,6}$/.test(v)&&Number(v)===q.values[j]});if(ok)checked++;f.textContent=ok?'填寫內容核對正確；步驟及理由待成人確認。':'填寫內容需要再檢查；步驟及理由待成人確認。'}else{pending++;f.textContent='實作、方法與理由待成人確認。'}[...fields,note].forEach(x=>x.disabled=true)});submitted=true;submit.disabled=true;result.textContent='已提交'+(repeated?'（重做，不作首次獨立測量）':'')+'；數字或選項核對正確 '+checked+' 題'+(pending?'，另有 '+pending+' 項待成人確認':'')+'。直式、實物、理由及是否精熟均須真人確認。';key.innerHTML='<h3>成人參考答案</h3>'+data.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('');key.hidden=false};if(physical.length){let extra=document.createElement('details');extra.className='panel controls mastery-hands-on';extra.innerHTML='<summary>實物操作（選做，須成人確認）</summary><p>可自行記錄實際操作；不計入紙筆測驗，電腦不判定操作結果。重新整理後紀錄不保留。</p>'+physical.map((q,i)=>'<article class="item"><p><strong>'+(i+1)+'. </strong>'+esc(q.prompt)+'</p><label>操作與觀察紀錄 <textarea></textarea></label></article>').join('');document.querySelector('main').appendChild(extra)}})();
+
+document.getElementById("directUnit").addEventListener("change",function(){location.href=this.value});</script></body></html>

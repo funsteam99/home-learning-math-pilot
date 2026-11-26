@@ -1,0 +1,194 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三年級第13單元估算審查稿</title><style>
+/* Layout: controls on top; each practice sheet is a paper-like card of two question columns.
+   Palette: warm paper neutrals with one deep-blue accent; red reserved for answers. */
+:root {
+  --bg: #f4f2ec;
+  --fg: #1c2330;
+  --muted: #5f6772;
+  --card: #ffffff;
+  --line: #d6d0c2;
+  --accent: #2d5b86;
+  --on-accent: #ffffff;
+  --ans: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+    --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+  --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; min-width: 0; }
+h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0 0 8px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0 0 16px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.row[hidden] { display: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label { font-size: 14px; color: var(--muted); }
+select, input[type="number"] {
+  font: inherit;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 0;
+}
+select { flex: 1 1 220px; max-width: 100%; }
+input[type="number"] { width: 150px; max-width: 100%; }
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg); font-size: 14px; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.page {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 16px;
+}
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { grid-column: 1 / -1; margin: 0 0 2px; }
+.fill { display: inline-block; min-width: 4em; border-bottom: 1px solid var(--line); }
+.page-foot {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 22px;
+  row-gap: 2px;
+}
+.q { display: flex; align-items: center; gap: 6px; min-width: 0; min-height: 30px; font-size: 16px; }
+.no { width: 2.2em; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.pt { min-width: 0; overflow-wrap: anywhere; }
+.blank { flex: 1 1 36px; min-width: 36px; border-bottom: 1px solid var(--line); height: 1.2em; }
+.ans { display: none; color: var(--ans); font-weight: 700; flex: none; }
+.show-ans .ans { display: inline; }
+.pic .q { min-height: 84px; }
+.pic svg { flex: none; width: 96px; height: 80px; color: var(--fg); }
+
+.key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mastery ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mastery li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; }
+.mastery li .q { min-height: 0; }
+.mastery input {
+  font: inherit;
+  width: 96px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.fix { color: var(--ans); font-weight: 700; display: none; }
+.mastery li.wrong .fix { display: inline; }
+.result { font-weight: 700; font-size: 16px; }
+
+@media (max-width: 480px) {
+  .page-head { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+@media print {
+  :root:root {
+    --bg: #ffffff; --fg: #000000; --muted: #333333; --card: #ffffff;
+    --line: #777777; --accent: #000000; --on-accent: #ffffff; --ans: #000000;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #ffffff; color: #000000; }
+  .wrap > h1, .lede, .panel, .mastery, .note { display: none !important; }
+  .page { border: 0; border-radius: 0; margin: 0; padding: 0; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .page-head { margin-bottom: 6px; padding-bottom: 6px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); row-gap: 0; }
+  .text .q { height: 5.9mm; min-height: 0; font-size: 12pt; }
+  .pic .q { height: 25mm; min-height: 0; font-size: 12pt; }
+  .pic svg { width: 26mm; height: 22mm; }
+  .page-foot { font-size: 9pt; }
+  .answers { break-before: page; }
+  .answers[hidden] { display: block !important; }
+  .show-ans .ans { display: inline !important; }
+}
+
+.group-0 .smallbtn.selected{background:#a13a2a;color:#fff}.group-1 .smallbtn.selected{background:#245b92;color:#fff}.pair-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(18px,1fr));max-width:360px}.pair-col{display:grid;text-align:center;line-height:1.3}.place-table{border-collapse:collapse;margin:12px 0}.place-table th,.place-table td{border:1px solid var(--line);padding:4px;text-align:center}.place-table input[type=number]{width:65px}.stack-front{display:flex;align-items:end;gap:4px;min-height:100px}.stack-col{display:flex;flex-direction:column;gap:2px}.stack-block{display:block;width:24px;height:24px;border:1px solid var(--fg);background:var(--bg)}.stack-top{display:flex;gap:4px}.stack-input input[type=number]{width:70px}.classify-list{display:flex;flex-wrap:wrap;gap:8px}.class-object{border:1px solid var(--line);padding:8px;border-radius:6px}.class-object select{display:block;width:95px;min-height:38px}.compare-bars{max-width:240px}.compare-line{display:flex;align-items:center;gap:8px;margin:7px 0}.compare-track{width:200px}.compare-bar{height:16px;background:var(--accent)}.compare-bar.second{margin-left:32px}.compare-bars.aligned .compare-bar.second{margin-left:0}.measure-scroll{overflow-x:auto}.measure-strip{height:22px;background:var(--accent);margin-bottom:5px}.measure-slots{display:flex;width:max-content}.measure-slot{width:24px;height:24px;min-width:24px;padding:0;border:1px dashed var(--line);background:var(--card);color:var(--fg);cursor:pointer}.measure-slot.selected{background:var(--accent);color:var(--on-accent)}.coin{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--fg);border-radius:50%;font-weight:bold}.cointray input[type=number]{width:65px}.tenbar{display:inline-flex;border:1px solid var(--fg)}.unit-square{display:inline-block;width:9px;height:9px;border:1px solid var(--fg);background:var(--card)}.duration-row{display:flex;align-items:center;gap:8px}.duration-name{width:6em;flex:none}.duration-bar{display:inline-block;height:12px;background:var(--accent);vertical-align:middle}.dot.square{border-radius:0}.dot.crossed{position:relative}.dot.crossed:after{content:"×";position:absolute;font-size:27px;line-height:18px;color:var(--ans);left:1px;top:0}[hidden]{display:none!important}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.item{border-bottom:1px solid var(--line);padding:10px 0;min-width:0}.item p{margin:5px 0}.item input[type=number]{width:75px;min-height:40px}.dots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.dot{width:18px;height:18px;border-radius:50%;background:var(--fg);display:inline-block}.options{display:flex;gap:6px;flex-wrap:wrap}.smallbtn{font:inherit;min-width:40px;min-height:40px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);cursor:pointer}.smallbtn.selected{background:var(--accent);color:var(--on-accent)}.drawbtn{border-radius:50%;padding:0;width:40px}.feedback{color:var(--ans);font-weight:bold}.pair{display:flex;align-items:center;gap:6px;margin:4px 0}.pair select{flex:0 1 95px;min-height:38px}.resultbox{padding:12px;background:var(--bg);border-radius:6px}.mastery input[type=radio],.mastery input[type=checkbox]{width:18px;min-height:0;height:18px}.mastery fieldset{border:0;padding:0}.mastery label{color:var(--fg)}.item label{color:var(--fg)}.page-head{display:block}.note{line-height:1.6}@media(max-width:600px){.question-list{grid-template-columns:1fr}}@media print{.question-list{grid-template-columns:1fr 1fr}.panel.mastery{display:none!important}}
+
+.u1-print{display:none}.u1-key-draw svg{vertical-align:middle;margin:1px}.u1-key-draw{display:block}
+@media print{.u1-item>*:not(.u1-print){display:none!important}.u1-item .u1-print{display:block}.u1-item{break-inside:avoid;page-break-inside:avoid}.u1-print p{margin:3px 0}.u1-dots{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}.u1-drawbox{border:1px solid #000;height:21mm;margin:4px 0}.u1-options{display:flex;gap:14mm;margin:4mm 0;font-size:14pt}.u1-key-draw{break-inside:avoid}.page:has(.u1-item){break-after:auto}.page:has(.u1-item) .page-head span{display:none}}
+.progress-notice{margin:0 0 16px;padding:15px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}.progress-notice h2{margin:0 0 2px}.progress-notice p{margin:6px 0}.progress-date{font-size:13px;color:var(--muted)}.progress-notice summary{cursor:pointer;color:var(--accent);font-weight:700;padding:6px 0}.progress-notice li{margin:6px 0}.progress-notice ul{padding-left:1.4em;margin:6px 0}@media print{.progress-notice{display:none!important}}
+.item textarea{display:block;width:100%;min-height:5em;box-sizing:border-box;font:inherit}.feedback{font-weight:bold}@media print{.controls{display:none!important}}</style></head><body><main class="wrap"><h1>數學自動學習系統</h1><p>三年級第 32 單元：一維模式觀察、操作與說明（不列公式）</p><section class="panel controls"><strong>試用／審查中：9 題來源候選與 20 題改編變式，不是完整單元或精熟。</strong><p>本頁練習固定添拿與自創模式，不寫公式；真實小物、操作過程及口說由成人確認。</p><div class="row"><label for="seed">練習編號</label><input id="seed" type="number" min="1" max="2147483646" value="1"><button class="btn" id="new" type="button">產生新練習單</button><button class="btn ghost" id="show" type="button">依編號重新產生</button></div><p>編號只重排現有 29 題；重新產生會清除作答。</p><label class="check"><input id="showAns" type="checkbox">顯示參考答案</label><label class="check"><input id="showKey" type="checkbox">顯示家長答案頁</label><a href="https://shezi.org.tw/#resources" target="_top">回學習入口</a></section><div id="questions"></div><section class="page controls"><button class="btn" id="checkAnswered" type="button">批改已作答題目</button><p id="summary" role="status"></p><p>操作、規則及題意均由成人確認。</p></section></main><script>const SOURCE=[{"id":"P01","facet":"increase","sequence":[2,4,6,8],"step":2,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添2；第5、6步10、12；實際添物支持"},{"id":"P05","facet":"increase","sequence":[6,8,10,12],"step":2,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添2；第5、6步14、16；實際添物支持"},{"id":"X01","facet":"increase","sequence":[5,10,15,20],"step":5,"direction":1,"prompt":"為另一位孩子做可由原始材料核對的模式或表格說明，保留全部來源。用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添5；第5、6步25、30；實際添物支持"},{"id":"P02","facet":"decrease","sequence":[19,16,13,10],"step":3,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿3；第5、6步7、4；實際拿物支持"},{"id":"P06","facet":"decrease","sequence":[23,19,15,11],"step":4,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿4；第5、6步7、3；實際拿物支持"},{"id":"P14","facet":"decrease","sequence":[24,21,18,15],"step":3,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿3；第5、6步12、9；實際拿物支持"},{"id":"P18","facet":"decrease","sequence":[21,17,13,9],"step":4,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿4；第5、6步5、1；實際拿物支持"},{"id":"X02","facet":"decrease","sequence":[23,20,17,14],"step":3,"direction":-1,"prompt":"為另一位孩子做可由原始材料核對的模式或表格說明，保留全部來源。親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿3；第5、6步11、8；實際拿物支持"},{"id":"P04","facet":"create","prompt":"選自己的同種小物，親自做一個四步的一維數量模式。每步以相同添量或拿量變，記四步，再請成人照孩子的口說規則做第五步，孩子核對；不寫公式。","answer":"自選起量與固定添／拿量；四步及第五步一致，實際材料、口說規則與核對作品齊全"},{"id":"ADAPTED-01","facet":"increase","sequence":[11,12,13,14],"step":1,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添1；第5、6步15、16；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-02","facet":"increase","sequence":[12,14,16,18],"step":2,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添2；第5、6步20、22；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-03","facet":"increase","sequence":[13,16,19,22],"step":3,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添3；第5、6步25、28；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-04","facet":"increase","sequence":[14,18,22,26],"step":4,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添4；第5、6步30、34；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-05","facet":"increase","sequence":[15,20,25,30],"step":5,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添5；第5、6步35、40；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-06","facet":"increase","sequence":[16,17,18,19],"step":1,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添1；第5、6步20、21；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-07","facet":"increase","sequence":[17,19,21,23],"step":2,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添2；第5、6步25、27；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-08","facet":"increase","sequence":[18,21,24,27],"step":3,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添3；第5、6步30、33；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-09","facet":"increase","sequence":[19,23,27,31],"step":4,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添4；第5、6步35、39；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-10","facet":"increase","sequence":[20,25,30,35],"step":5,"direction":1,"prompt":"用真實小物親自擺出表中前四步，每次從前一步添入相同量。先說每步如何變，再做下一步，寫兩步接續與理由，不寫公式。","answer":"每步添5；第5、6步40、45；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ADAPTED-11","facet":"decrease","sequence":[34,33,32,31],"step":1,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿1；第5、6步30、29；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-12","facet":"decrease","sequence":[38,36,34,32],"step":2,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿2；第5、6步30、28；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-13","facet":"decrease","sequence":[42,39,36,33],"step":3,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿3；第5、6步30、27；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-14","facet":"decrease","sequence":[46,42,38,34],"step":4,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿4；第5、6步30、26；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-15","facet":"decrease","sequence":[50,45,40,35],"step":5,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿5；第5、6步30、25；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-16","facet":"decrease","sequence":[39,38,37,36],"step":1,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿1；第5、6步35、34；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-17","facet":"decrease","sequence":[43,41,39,37],"step":2,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿2；第5、6步35、33；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-18","facet":"decrease","sequence":[47,44,41,38],"step":3,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿3；第5、6步35、32；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-19","facet":"decrease","sequence":[51,47,43,39],"step":4,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿4；第5、6步35、31；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-20","facet":"decrease","sequence":[55,50,45,40],"step":5,"direction":-1,"prompt":"親自擺出前四步，每次從前一步拿走相同量，再做下一步與下下步。說每步少多少，保留原物與拿走物，不寫公式。","answer":"每步拿5；第5、6步35、30；實際添拿支持","origin":"來源題改編變式（待審）","sourceReference":"P02"}];
+'use strict';
+const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function shuffle(items,seed){let a=items.slice(),s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;let j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}function integer(x){let s=String(x).normalize('NFKC').trim();return /^\d{1,4}$/.test(s)?Number(s):NaN}
+function question(q,i){let fields=q.facet==='create'?'':'<table><caption>前四步的數量</caption><thead><tr><th>第1步</th><th>第2步</th><th>第3步</th><th>第4步</th></tr></thead><tbody><tr>'+q.sequence.map(n=>'<td>'+n+'</td>').join('')+'</tr></tbody></table><label>每步添或拿多少個 <input class="step" type="text" inputmode="numeric"></label> <label>第5步 <input class="fifth" type="text" inputmode="numeric"></label> <label>第6步 <input class="sixth" type="text" inputmode="numeric"></label>';return '<article class="item" data-id="'+esc(q.id)+'"><strong>'+(i+1)+'. </strong>'+(q.origin?'<span class="note">'+esc(q.origin)+'</span>':'')+'<p>'+esc(q.prompt)+'</p>'+fields+'<details><summary>線上添拿示意（不取代真實材料）</summary><button type="button" class="add">添1個</button> <button type="button" class="remove">拿走1個</button> <button type="button" class="reset-model">清空</button><p class="model" data-touched="0" role="status">目前 0 個。</p></details> <button class="check controls" type="button">檢查填寫</button><p class="feedback" role="status"></p><label>記錄擺法、自己的規則及理由 <textarea aria-label="記錄擺法、自己的規則及理由"></textarea></label><p class="note">網頁只核對指定數字；真實物件、添拿過程、創作及口說須成人確認。</p><div class="answer" hidden>參考答案：'+esc(q.answer)+'</div></article>'}
+function render(items,n){$('#questions').innerHTML='<section class="page"><div class="page-head"><h2>第 32 單元：一維模式觀察、操作與說明</h2><span>練習編號 '+esc(n)+'　｜　'+items.length+' 題候選</span></div><div class="question-list">'+items.map(question).join('')+'</div></section><section class="page key" id="key" hidden><h2>家長參考答案</h2>'+items.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('')+'</section>';document.querySelectorAll('#questions article').forEach((card,i)=>{let q=items[i],f=card.querySelector('.feedback'),fields=[...card.querySelectorAll('input')],note=card.querySelector('textarea'),model=card.querySelector('.model'),count=0;function show(){model.textContent='目前 '+count+' 個。';model.dataset.touched=count?'1':'0'}card.querySelector('.add').onclick=()=>{if(count<60)count++;show()};card.querySelector('.remove').onclick=()=>{if(count>0)count--;show()};card.querySelector('.reset-model').onclick=()=>{count=0;show()};fields.forEach(x=>x.oninput=()=>f.textContent='');note.oninput=()=>f.textContent='';card.querySelector('.check').onclick=()=>{if(q.facet==='create'){f.textContent=note.value.trim()?'已記錄；實物、創作規則與口說請成人確認。':'請先記錄自己的模式。';return}if(fields.some(x=>!x.value.trim())){f.textContent='請先完成數字欄位。';return}let get=s=>integer(card.querySelector(s).value),ok=get('.step')===q.step&&get('.fifth')===q.sequence[3]+q.direction*q.step&&get('.sixth')===q.sequence[3]+2*q.direction*q.step;f.textContent=ok?'填寫數字正確；實物、規則與口說請成人確認。':'請再檢查每步變化和接續數量。'}});toggle()}
+function toggle(){document.querySelectorAll('#questions .answer').forEach(x=>x.hidden=!$('#showAns').checked);let key=$('#key');if(key)key.hidden=!$('#showKey').checked}$('#showAns').onchange=toggle;$('#showKey').onchange=toggle;$('#show').onclick=()=>{let n=Number($('#seed').value);if(!Number.isSafeInteger(n)||n<1||n>2147483646){alert('請輸入 1 至 2147483646 的練習編號。');return}$('#summary').textContent='';render(shuffle(SOURCE,n),n)};$('#new').onclick=()=>{$('#seed').value=1+Math.floor(Math.random()*2147483645);$('#show').click()};$('#checkAnswered').onclick=()=>{let n=0;document.querySelectorAll('#questions article').forEach(card=>{if([...card.querySelectorAll('input,textarea')].some(x=>x.value.trim())||card.querySelector('.model').dataset.touched==='1'){n++;card.querySelector('.check').click()}});$('#summary').textContent='已處理 '+n+' 題填寫或操作；實物、規則與口說請成人確認。'};$('#show').click();
+</script></body></html>

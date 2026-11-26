@@ -1,0 +1,194 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三年級第13單元估算審查稿</title><style>
+/* Layout: controls on top; each practice sheet is a paper-like card of two question columns.
+   Palette: warm paper neutrals with one deep-blue accent; red reserved for answers. */
+:root {
+  --bg: #f4f2ec;
+  --fg: #1c2330;
+  --muted: #5f6772;
+  --card: #ffffff;
+  --line: #d6d0c2;
+  --accent: #2d5b86;
+  --on-accent: #ffffff;
+  --ans: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+    --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+  --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; min-width: 0; }
+h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0 0 8px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0 0 16px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.row[hidden] { display: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label { font-size: 14px; color: var(--muted); }
+select, input[type="number"] {
+  font: inherit;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 0;
+}
+select { flex: 1 1 220px; max-width: 100%; }
+input[type="number"] { width: 150px; max-width: 100%; }
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg); font-size: 14px; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.page {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 16px;
+}
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { grid-column: 1 / -1; margin: 0 0 2px; }
+.fill { display: inline-block; min-width: 4em; border-bottom: 1px solid var(--line); }
+.page-foot {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 22px;
+  row-gap: 2px;
+}
+.q { display: flex; align-items: center; gap: 6px; min-width: 0; min-height: 30px; font-size: 16px; }
+.no { width: 2.2em; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.pt { min-width: 0; overflow-wrap: anywhere; }
+.blank { flex: 1 1 36px; min-width: 36px; border-bottom: 1px solid var(--line); height: 1.2em; }
+.ans { display: none; color: var(--ans); font-weight: 700; flex: none; }
+.show-ans .ans { display: inline; }
+.pic .q { min-height: 84px; }
+.pic svg { flex: none; width: 96px; height: 80px; color: var(--fg); }
+
+.key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mastery ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mastery li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; }
+.mastery li .q { min-height: 0; }
+.mastery input {
+  font: inherit;
+  width: 96px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.fix { color: var(--ans); font-weight: 700; display: none; }
+.mastery li.wrong .fix { display: inline; }
+.result { font-weight: 700; font-size: 16px; }
+
+@media (max-width: 480px) {
+  .page-head { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+@media print {
+  :root:root {
+    --bg: #ffffff; --fg: #000000; --muted: #333333; --card: #ffffff;
+    --line: #777777; --accent: #000000; --on-accent: #ffffff; --ans: #000000;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #ffffff; color: #000000; }
+  .wrap > h1, .lede, .panel, .mastery, .note { display: none !important; }
+  .page { border: 0; border-radius: 0; margin: 0; padding: 0; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .page-head { margin-bottom: 6px; padding-bottom: 6px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); row-gap: 0; }
+  .text .q { height: 5.9mm; min-height: 0; font-size: 12pt; }
+  .pic .q { height: 25mm; min-height: 0; font-size: 12pt; }
+  .pic svg { width: 26mm; height: 22mm; }
+  .page-foot { font-size: 9pt; }
+  .answers { break-before: page; }
+  .answers[hidden] { display: block !important; }
+  .show-ans .ans { display: inline !important; }
+}
+
+.group-0 .smallbtn.selected{background:#a13a2a;color:#fff}.group-1 .smallbtn.selected{background:#245b92;color:#fff}.pair-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(18px,1fr));max-width:360px}.pair-col{display:grid;text-align:center;line-height:1.3}.place-table{border-collapse:collapse;margin:12px 0}.place-table th,.place-table td{border:1px solid var(--line);padding:4px;text-align:center}.place-table input[type=number]{width:65px}.stack-front{display:flex;align-items:end;gap:4px;min-height:100px}.stack-col{display:flex;flex-direction:column;gap:2px}.stack-block{display:block;width:24px;height:24px;border:1px solid var(--fg);background:var(--bg)}.stack-top{display:flex;gap:4px}.stack-input input[type=number]{width:70px}.classify-list{display:flex;flex-wrap:wrap;gap:8px}.class-object{border:1px solid var(--line);padding:8px;border-radius:6px}.class-object select{display:block;width:95px;min-height:38px}.compare-bars{max-width:240px}.compare-line{display:flex;align-items:center;gap:8px;margin:7px 0}.compare-track{width:200px}.compare-bar{height:16px;background:var(--accent)}.compare-bar.second{margin-left:32px}.compare-bars.aligned .compare-bar.second{margin-left:0}.measure-scroll{overflow-x:auto}.measure-strip{height:22px;background:var(--accent);margin-bottom:5px}.measure-slots{display:flex;width:max-content}.measure-slot{width:24px;height:24px;min-width:24px;padding:0;border:1px dashed var(--line);background:var(--card);color:var(--fg);cursor:pointer}.measure-slot.selected{background:var(--accent);color:var(--on-accent)}.coin{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--fg);border-radius:50%;font-weight:bold}.cointray input[type=number]{width:65px}.tenbar{display:inline-flex;border:1px solid var(--fg)}.unit-square{display:inline-block;width:9px;height:9px;border:1px solid var(--fg);background:var(--card)}.duration-row{display:flex;align-items:center;gap:8px}.duration-name{width:6em;flex:none}.duration-bar{display:inline-block;height:12px;background:var(--accent);vertical-align:middle}.dot.square{border-radius:0}.dot.crossed{position:relative}.dot.crossed:after{content:"×";position:absolute;font-size:27px;line-height:18px;color:var(--ans);left:1px;top:0}[hidden]{display:none!important}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.item{border-bottom:1px solid var(--line);padding:10px 0;min-width:0}.item p{margin:5px 0}.item input[type=number]{width:75px;min-height:40px}.dots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.dot{width:18px;height:18px;border-radius:50%;background:var(--fg);display:inline-block}.options{display:flex;gap:6px;flex-wrap:wrap}.smallbtn{font:inherit;min-width:40px;min-height:40px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);cursor:pointer}.smallbtn.selected{background:var(--accent);color:var(--on-accent)}.drawbtn{border-radius:50%;padding:0;width:40px}.feedback{color:var(--ans);font-weight:bold}.pair{display:flex;align-items:center;gap:6px;margin:4px 0}.pair select{flex:0 1 95px;min-height:38px}.resultbox{padding:12px;background:var(--bg);border-radius:6px}.mastery input[type=radio],.mastery input[type=checkbox]{width:18px;min-height:0;height:18px}.mastery fieldset{border:0;padding:0}.mastery label{color:var(--fg)}.item label{color:var(--fg)}.page-head{display:block}.note{line-height:1.6}@media(max-width:600px){.question-list{grid-template-columns:1fr}}@media print{.question-list{grid-template-columns:1fr 1fr}.panel.mastery{display:none!important}}
+
+.u1-print{display:none}.u1-key-draw svg{vertical-align:middle;margin:1px}.u1-key-draw{display:block}
+@media print{.u1-item>*:not(.u1-print){display:none!important}.u1-item .u1-print{display:block}.u1-item{break-inside:avoid;page-break-inside:avoid}.u1-print p{margin:3px 0}.u1-dots{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}.u1-drawbox{border:1px solid #000;height:21mm;margin:4px 0}.u1-options{display:flex;gap:14mm;margin:4mm 0;font-size:14pt}.u1-key-draw{break-inside:avoid}.page:has(.u1-item){break-after:auto}.page:has(.u1-item) .page-head span{display:none}}
+.progress-notice{margin:0 0 16px;padding:15px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}.progress-notice h2{margin:0 0 2px}.progress-notice p{margin:6px 0}.progress-date{font-size:13px;color:var(--muted)}.progress-notice summary{cursor:pointer;color:var(--accent);font-weight:700;padding:6px 0}.progress-notice li{margin:6px 0}.progress-notice ul{padding-left:1.4em;margin:6px 0}@media print{.progress-notice{display:none!important}}
+.item textarea{display:block;width:100%;min-height:5em;box-sizing:border-box;font:inherit}.feedback{font-weight:bold}@media print{.controls{display:none!important}}.cell{font:inherit;min-width:44px;min-height:44px;border:1px solid var(--line);background:transparent;color:inherit}.cell[aria-pressed="true"]{background:var(--accent);color:var(--bg)}.cell:focus-visible{outline:3px solid var(--accent);outline-offset:2px}</style></head><body><main class="wrap"><h1>數學自動學習系統</h1><p>三年級第 33 單元：生活一維二維表格報讀</p><section class="panel controls"><strong>試用／審查中：5 題來源候選與 30 題改編變式，不是完整單元或精熟。</strong><p>本頁提供一維時段及二維表格交叉報讀；其他情境尚待補充，定位紙和口說由成人確認。</p><div class="row"><label for="seed">練習編號</label><input id="seed" type="number" min="1" max="2147483646" value="1"><button class="btn" id="new" type="button">產生新練習單</button><button class="btn ghost" id="show" type="button">依編號重新產生</button></div><p>編號只重排現有 35 題；重新產生會清除作答。</p><label class="check"><input id="showAns" type="checkbox">顯示參考答案</label><label class="check"><input id="showKey" type="checkbox">顯示家長答案頁</label><a href="https://shezi.org.tw/#resources" target="_top">回學習入口</a></section><div id="questions"></div><section class="page controls"><button class="btn" id="checkAnswered" type="button">批改已作答題目</button><p id="summary" role="status"></p><p>定位、口說及題意均由成人確認。</p></section></main><script>const SOURCE=[{"id":"P02","counts":[3,3,2,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓3；各定位需兩個條件"},{"id":"P06","counts":[4,3,2,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓4；各定位需兩個條件"},{"id":"X02","counts":[3,1,2,1],"prompt":"為另一位孩子做可由原始材料核對的模式或表格說明，保留全部來源。親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角1；紅圓3；各定位需兩個條件"},{"id":"ADAPTED-01","counts":[0,5,2,0],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角0；紅圓0；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-02","counts":[1,5,3,1],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角1；紅圓1；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-03","counts":[2,5,4,0],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角0；紅圓2；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-04","counts":[3,5,2,1],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角1；紅圓3；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-05","counts":[4,5,3,0],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角0；紅圓4；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-06","counts":[0,6,4,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓0；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-07","counts":[1,6,2,1],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角1；紅圓1；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-08","counts":[2,6,3,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓2；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-09","counts":[3,6,4,1],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角1；紅圓3；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-10","counts":[4,6,2,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓4；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-11","counts":[0,7,3,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓0；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-12","counts":[1,7,4,3],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角3；紅圓1；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-13","counts":[2,7,2,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓2；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-14","counts":[3,7,3,3],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角3；紅圓3；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-15","counts":[4,7,4,2],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角2；紅圓4；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-16","counts":[0,8,2,4],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角4；紅圓0；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-17","counts":[1,8,3,3],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角3；紅圓1；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-18","counts":[2,8,4,4],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角4；紅圓2；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-19","counts":[3,8,2,3],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角3；紅圓3；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"ADAPTED-20","counts":[4,8,3,4],"prompt":"親自用兩張空白定位紙一張對準「藍」列、一張對準「三角」欄，指出交叉資料與數量，再說紅圓在哪裡。逐項說行列兩條件，不能只看一個標題。","answer":"藍三角4；紅圓4；各定位需兩個條件","origin":"來源題改編變式（待審）","sourceReference":"P02"},{"id":"P01","facet":"one","counts":[2,1,2],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多['上午', '下午']，各2盒；上午下午差0盒"},{"id":"P05","facet":"one","counts":[3,1,2],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多['上午']，各3盒；上午下午差1盒"},{"id":"ONE-ADAPTED-01","facet":"one","counts":[0,0,1],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多下午，各1盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-02","facet":"one","counts":[1,0,2],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多下午，各2盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-03","facet":"one","counts":[2,0,3],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多下午，各3盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-04","facet":"one","counts":[3,0,0],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多上午，各3盒；上午下午差3盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-05","facet":"one","counts":[0,1,1],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多中午、下午，各1盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-06","facet":"one","counts":[1,1,2],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多下午，各2盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-07","facet":"one","counts":[2,1,3],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多下午，各3盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-08","facet":"one","counts":[3,1,0],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多上午，各3盒；上午下午差3盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-09","facet":"one","counts":[2,2,1],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多上午、中午，各2盒；上午下午差1盒","origin":"來源題改編變式（待審）","sourceReference":"P01"},{"id":"ONE-ADAPTED-10","facet":"one","counts":[3,3,3],"prompt":"表記各時段使用的盒彩紙。先說每列與數字的意思，指出最多時段（若並列須都記），再比上午與下午差幾盒。","answer":"最多上午、中午、下午，各3盒；上午下午差0盒","origin":"來源題改編變式（待審）","sourceReference":"P01"}];
+'use strict';
+const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function shuffle(items,seed){let a=items.slice(),s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;let j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}function integer(x){let s=String(x).normalize('NFKC').trim();return /^\d{1,4}$/.test(s)?Number(s):NaN}
+function question(q,i){if(q.facet==='one'){let labels=['上午','中午','下午'],table='<table><caption>各時段使用的盒彩紙</caption><thead><tr><th scope="col">時段</th><th scope="col">數量（盒）</th></tr></thead><tbody>'+labels.map((x,j)=>'<tr><th scope="row">'+x+'</th><td>'+q.counts[j]+'</td></tr>').join('')+'</tbody></table>',options=['上午','中午','下午','上午、中午','上午、下午','中午、下午','上午、中午、下午'];return '<article class="item" data-id="'+esc(q.id)+'"><strong>'+(i+1)+'. </strong>'+(q.origin?'<span class="note">'+esc(q.origin)+'</span>':'')+'<p>'+esc(q.prompt)+'</p>'+table+'<label>最多時段（並列選完整組合） <select class="max"><option value="">請選擇</option>'+options.map(x=>'<option>'+x+'</option>').join('')+'</select></label> <label>上午與下午相差幾盒 <input class="diff" type="text" inputmode="numeric"></label> <button class="check controls" type="button">檢查填寫</button><p class="feedback" role="status"></p><label>記錄閱讀表格的方法與說明 <textarea aria-label="記錄閱讀表格的方法與說明"></textarea></label><p class="note">網頁核對最多時段及差距；表格意義及說明由成人確認。</p><div class="answer" hidden>參考答案：'+esc(q.answer)+'</div></article>'}let table='<table><caption>圖形數量表</caption><thead><tr><th scope="col">顏色／形狀</th><th scope="col">圓</th><th scope="col">三角</th></tr></thead><tbody>'+['紅','藍'].map((color,r)=>'<tr><th scope="row">'+color+'</th>'+['圓','三角'].map((shape,c)=>'<td><button type="button" class="cell" aria-label="'+color+shape+'，'+q.counts[r*2+c]+'個" aria-pressed="false">'+q.counts[r*2+c]+'</button></td>').join('')+'</tr>').join('')+'</tbody></table>';return '<article class="item" data-id="'+esc(q.id)+'"><strong>'+(i+1)+'. </strong>'+(q.origin?'<span class="note">'+esc(q.origin)+'</span>':'')+'<p>'+esc(q.prompt)+'</p>'+table+'<p>可點選表格中的數字標記，再點一次取消。</p><label>藍三角有幾個 <input class="blue" type="text" inputmode="numeric"></label> <label>紅圓有幾個 <input class="red" type="text" inputmode="numeric"></label> <button class="check controls" type="button">檢查填寫</button><p class="feedback" role="status"></p><label>記錄如何對準列欄及說明 <textarea aria-label="記錄如何對準列欄及說明"></textarea></label><p class="note">網頁核對數字；定位紙、行列條件與口說由成人確認。</p><div class="answer" hidden>參考答案：'+esc(q.answer)+'</div></article>'}
+function render(items,n){$('#questions').innerHTML='<section class="page"><div class="page-head"><h2>第 33 單元：生活一維二維表格報讀</h2><span>練習編號 '+esc(n)+'　｜　'+items.length+' 題候選</span></div><div class="question-list">'+items.map(question).join('')+'</div></section><section class="page key" id="key" hidden><h2>家長參考答案</h2>'+items.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('')+'</section>';document.querySelectorAll('#questions article').forEach((card,i)=>{let q=items[i],f=card.querySelector('.feedback'),fields=[...card.querySelectorAll('input')];let maxSelect=card.querySelector('.max');if(maxSelect)maxSelect.onchange=()=>f.textContent='';card.querySelectorAll('.cell').forEach(t=>t.onclick=()=>{t.setAttribute('aria-pressed',t.getAttribute('aria-pressed')==='true'?'false':'true');card.dataset.marked=card.querySelectorAll('.cell[aria-pressed="true"]').length?'1':'0';f.textContent=''});fields.forEach(x=>x.oninput=()=>f.textContent='');card.querySelector('.check').onclick=()=>{if(fields.some(x=>!x.value.trim())){f.textContent='請先完成兩個數字欄位。';return}let ok;if(q.facet==='one'){let choice=card.querySelector('.max').value;if(!choice){f.textContent='請先選擇最多時段。';return}let max=Math.max(...q.counts),expected=['上午','中午','下午'].filter((_,j)=>q.counts[j]===max).join('、');ok=choice===expected&&integer(card.querySelector('.diff').value)===Math.abs(q.counts[0]-q.counts[2])}else ok=integer(card.querySelector('.blue').value)===q.counts[3]&&integer(card.querySelector('.red').value)===q.counts[0];f.textContent=ok?'填寫數字正確；定位及說明請成人確認。':'請再核對表格與所選項目。'}});toggle()}
+function toggle(){document.querySelectorAll('#questions .answer').forEach(x=>x.hidden=!$('#showAns').checked);let key=$('#key');if(key)key.hidden=!$('#showKey').checked}$('#showAns').onchange=toggle;$('#showKey').onchange=toggle;$('#show').onclick=()=>{let n=Number($('#seed').value);if(!Number.isSafeInteger(n)||n<1||n>2147483646){alert('請輸入 1 至 2147483646 的練習編號。');return}$('#summary').textContent='';render(shuffle(SOURCE,n),n)};$('#new').onclick=()=>{$('#seed').value=1+Math.floor(Math.random()*2147483645);$('#show').click()};$('#checkAnswered').onclick=()=>{let n=0;document.querySelectorAll('#questions article').forEach(card=>{if([...card.querySelectorAll('input,select,textarea')].some(x=>x.value.trim())||card.dataset.marked==='1'){n++;card.querySelector('.check').click()}});$('#summary').textContent='已處理 '+n+' 題填寫或標記；定位與口說請成人確認。'};$('#show').click();
+</script></body></html>

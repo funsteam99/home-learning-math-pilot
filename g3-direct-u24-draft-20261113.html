@@ -1,0 +1,201 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>三年級｜第 24 單元：公升毫升實測估測與換算加減（44題候選）（本機審查草案）</title><style>
+/* Layout: controls on top; each practice sheet is a paper-like card of two question columns.
+   Palette: warm paper neutrals with one deep-blue accent; red reserved for answers. */
+:root {
+  --bg: #f4f2ec;
+  --fg: #1c2330;
+  --muted: #5f6772;
+  --card: #ffffff;
+  --line: #d6d0c2;
+  --accent: #2d5b86;
+  --on-accent: #ffffff;
+  --ans: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+    --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14171d; --fg: #e7e4dc; --muted: #9ba4af; --card: #1c212a;
+  --line: #3b434f; --accent: #8db8e0; --on-accent: #10151c; --ans: #ff9b8f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  padding-block: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 880px; margin: 0 auto; min-width: 0; }
+h1 { font-size: 22px; margin: 0 0 4px; text-wrap: balance; }
+h2 { font-size: 17px; margin: 0 0 8px; text-wrap: balance; }
+.lede { color: var(--muted); margin: 0 0 16px; }
+.note { font-size: 13px; color: var(--muted); margin: 0; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+.row[hidden] { display: none; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+label { font-size: 14px; color: var(--muted); }
+select, input[type="number"] {
+  font: inherit;
+  min-height: 44px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  min-width: 0;
+}
+select { flex: 1 1 220px; max-width: 100%; }
+input[type="number"] { width: 150px; max-width: 100%; }
+.btn {
+  font: inherit;
+  min-height: 44px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  cursor: pointer;
+}
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+.check { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--fg); font-size: 14px; }
+.check input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); }
+
+.page {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 16px;
+}
+.page-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.page-head h2 { grid-column: 1 / -1; margin: 0 0 2px; }
+.fill { display: inline-block; min-width: 4em; border-bottom: 1px solid var(--line); }
+.page-foot {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(var(--rows), auto);
+  column-gap: 22px;
+  row-gap: 2px;
+}
+.q { display: flex; align-items: center; gap: 6px; min-width: 0; min-height: 30px; font-size: 16px; }
+.no { width: 2.2em; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; flex: none; }
+.pt { min-width: 0; overflow-wrap: anywhere; }
+.blank { flex: 1 1 36px; min-width: 36px; border-bottom: 1px solid var(--line); height: 1.2em; }
+.ans { display: none; color: var(--ans); font-weight: 700; flex: none; }
+.show-ans .ans { display: inline; }
+.pic .q { min-height: 84px; }
+.pic svg { flex: none; width: 96px; height: 80px; color: var(--fg); }
+
+.key {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px 12px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.mastery ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.mastery li { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 16px; }
+.mastery li .q { min-height: 0; }
+.mastery input {
+  font: inherit;
+  width: 96px;
+  min-height: 40px;
+  padding: 4px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+}
+.fix { color: var(--ans); font-weight: 700; display: none; }
+.mastery li.wrong .fix { display: inline; }
+.result { font-weight: 700; font-size: 16px; }
+
+@media (max-width: 480px) {
+  .page-head { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-auto-flow: row; grid-template-rows: none; }
+}
+
+@media print {
+  :root:root {
+    --bg: #ffffff; --fg: #000000; --muted: #333333; --card: #ffffff;
+    --line: #777777; --accent: #000000; --on-accent: #ffffff; --ans: #000000;
+    color-scheme: light;
+  }
+  @page { size: A4; margin: 12mm; }
+  body { padding: 0; background: #ffffff; color: #000000; }
+  .wrap > h1, .lede, .panel, .mastery, .note { display: none !important; }
+  .page { border: 0; border-radius: 0; margin: 0; padding: 0; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .page-head { margin-bottom: 6px; padding-bottom: 6px; }
+  .grid { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows), auto); row-gap: 0; }
+  .text .q { height: 5.9mm; min-height: 0; font-size: 12pt; }
+  .pic .q { height: 25mm; min-height: 0; font-size: 12pt; }
+  .pic svg { width: 26mm; height: 22mm; }
+  .page-foot { font-size: 9pt; }
+  .answers { break-before: page; }
+  .answers[hidden] { display: block !important; }
+  .show-ans .ans { display: inline !important; }
+}
+
+.group-0 .smallbtn.selected{background:#a13a2a;color:#fff}.group-1 .smallbtn.selected{background:#245b92;color:#fff}.pair-grid{display:grid;grid-template-columns:repeat(var(--cols),minmax(18px,1fr));max-width:360px}.pair-col{display:grid;text-align:center;line-height:1.3}.place-table{border-collapse:collapse;margin:12px 0}.place-table th,.place-table td{border:1px solid var(--line);padding:4px;text-align:center}.place-table input[type=number]{width:65px}.stack-front{display:flex;align-items:end;gap:4px;min-height:100px}.stack-col{display:flex;flex-direction:column;gap:2px}.stack-block{display:block;width:24px;height:24px;border:1px solid var(--fg);background:var(--bg)}.stack-top{display:flex;gap:4px}.stack-input input[type=number]{width:70px}.classify-list{display:flex;flex-wrap:wrap;gap:8px}.class-object{border:1px solid var(--line);padding:8px;border-radius:6px}.class-object select{display:block;width:95px;min-height:38px}.compare-bars{max-width:240px}.compare-line{display:flex;align-items:center;gap:8px;margin:7px 0}.compare-track{width:200px}.compare-bar{height:16px;background:var(--accent)}.compare-bar.second{margin-left:32px}.compare-bars.aligned .compare-bar.second{margin-left:0}.measure-scroll{overflow-x:auto}.measure-strip{height:22px;background:var(--accent);margin-bottom:5px}.measure-slots{display:flex;width:max-content}.measure-slot{width:24px;height:24px;min-width:24px;padding:0;border:1px dashed var(--line);background:var(--card);color:var(--fg);cursor:pointer}.measure-slot.selected{background:var(--accent);color:var(--on-accent)}.coin{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:2px solid var(--fg);border-radius:50%;font-weight:bold}.cointray input[type=number]{width:65px}.tenbar{display:inline-flex;border:1px solid var(--fg)}.unit-square{display:inline-block;width:9px;height:9px;border:1px solid var(--fg);background:var(--card)}.duration-row{display:flex;align-items:center;gap:8px}.duration-name{width:6em;flex:none}.duration-bar{display:inline-block;height:12px;background:var(--accent);vertical-align:middle}.dot.square{border-radius:0}.dot.crossed{position:relative}.dot.crossed:after{content:"×";position:absolute;font-size:27px;line-height:18px;color:var(--ans);left:1px;top:0}[hidden]{display:none!important}.question-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.item{border-bottom:1px solid var(--line);padding:10px 0;min-width:0}.item p{margin:5px 0}.item input[type=number]{width:75px;min-height:40px}.dots{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.dot{width:18px;height:18px;border-radius:50%;background:var(--fg);display:inline-block}.options{display:flex;gap:6px;flex-wrap:wrap}.smallbtn{font:inherit;min-width:40px;min-height:40px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);cursor:pointer}.smallbtn.selected{background:var(--accent);color:var(--on-accent)}.drawbtn{border-radius:50%;padding:0;width:40px}.feedback{color:var(--ans);font-weight:bold}.pair{display:flex;align-items:center;gap:6px;margin:4px 0}.pair select{flex:0 1 95px;min-height:38px}.resultbox{padding:12px;background:var(--bg);border-radius:6px}.mastery input[type=radio],.mastery input[type=checkbox]{width:18px;min-height:0;height:18px}.mastery fieldset{border:0;padding:0}.mastery label{color:var(--fg)}.item label{color:var(--fg)}.page-head{display:block}.note{line-height:1.6}@media(max-width:600px){.question-list{grid-template-columns:1fr}}@media print{.question-list{grid-template-columns:1fr 1fr}.panel.mastery{display:none!important}}
+
+.u1-print{display:none}.u1-key-draw svg{vertical-align:middle;margin:1px}.u1-key-draw{display:block}
+@media print{.u1-item>*:not(.u1-print){display:none!important}.u1-item .u1-print{display:block}.u1-item{break-inside:avoid;page-break-inside:avoid}.u1-print p{margin:3px 0}.u1-dots{display:flex;flex-wrap:wrap;gap:5px;margin:4px 0}.u1-drawbox{border:1px solid #000;height:21mm;margin:4px 0}.u1-options{display:flex;gap:14mm;margin:4mm 0;font-size:14pt}.u1-key-draw{break-inside:avoid}.page:has(.u1-item){break-after:auto}.page:has(.u1-item) .page-head span{display:none}}
+.progress-notice{margin:0 0 16px;padding:15px 16px;background:var(--card);border:1px solid var(--line);border-radius:10px}.progress-notice h2{margin:0 0 2px}.progress-notice p{margin:6px 0}.progress-date{font-size:13px;color:var(--muted)}.progress-notice summary{cursor:pointer;color:var(--accent);font-weight:700;padding:6px 0}.progress-notice li{margin:6px 0}.progress-notice ul{padding-left:1.4em;margin:6px 0}@media print{.progress-notice{display:none!important}}
+.item textarea{display:block;width:100%;min-height:5em;box-sizing:border-box;font:inherit}.feedback{font-weight:bold}@media print{.controls{display:none!important}}.key[hidden]{display:none!important}
+article.item>label>input[type="text"],article.item>label>input:not([type]),article.question>label>input[type="text"]{font:inherit;box-sizing:border-box;width:min(100%,10em);min-height:40px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+article.item>button.check{font:inherit;min-height:44px;padding:8px 16px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}article.item>button.check:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.local-print-notice{display:none}@media print{.local-print-notice{display:block;font-size:10pt}}
+.mastery-review{margin-top:20px}.mastery-item{margin:14px 0}.mastery-item>label{display:block;margin:8px 0}.mastery-item textarea{width:100%;min-height:4em;box-sizing:border-box;font:inherit}.mastery-result{font-weight:bold}</style></head><body><main class="wrap"><h1>數學自動學習系統</h1><p class="lede"><a href="https://shezi.org.tw/#resources" target="_top">回學習入口</a>　｜　三年級：選擇單元，產生練習單。同一個編號可以重現同一份題目。</p><p class="local-print-notice">試用／審查中：本單元為候選內容，題意、答案、教學及列印仍待確認；口讀、理由與實物操作請成人核對。</p><section class="panel controls"><div class="row"><label for="directUnit">單元</label><select id="directUnit"><option value="g3-direct-u01-draft-20261113.html">第 1 單元：10000 以內的數與千位</option><option value="g3-direct-u02-draft-20261113.html">第 2 單元：位值換算與數量表示（另有20題改編候選）</option><option value="g3-direct-u03-draft-20261113.html">第 3 單元：多次進位直式加法（另有20題改編候選）</option><option value="g3-direct-u04-draft-20261113.html">第 4 單元：多次退位直式減法（另有20題改編候選）</option><option value="g3-direct-u05-draft-20261113.html">第 5 單元：二三位數乘一位數（另有20題改編候選）</option><option value="g3-direct-u06-draft-20261113.html">第 6 單元：被乘數含 0 的乘法（另有20題改編候選）</option><option value="g3-direct-u07-draft-20261113.html">第 7 單元：整除與乘除關係（另有20題改編候選）</option><option value="g3-direct-u08-draft-20261113.html">第 8 單元：有餘數的除法（另有20題改編候選）</option><option value="g3-direct-u09-draft-20261113.html">第 9 單元：除法直式（另有20題改編候選）</option><option value="g3-direct-u10-draft-20261113.html">第 10 單元：含 0 的除法直式（另有20題改編候選）</option><option value="g3-direct-u11-draft-20261113.html">第 11 單元：兩步驟連乘（另有20題改編候選）</option><option value="g3-direct-u12-draft-20261113.html">第 12 單元：加減與除的兩步驟（另有20題改編候選）</option><option value="g3-direct-u13-draft-20261113.html">第 13 單元：生活四則估算與合理性（另有20題改編候選）</option><option value="g3-direct-u14-draft-20261113.html">第 14 單元：單位分數點數與同分母比較（45題候選）</option><option value="g3-direct-u15-draft-20261113.html">第 15 單元：同分母加減及和等於1（45題候選）</option><option value="g3-direct-u16-draft-20261113.html">第 16 單元：大於1至2的分數活動（25題候選）</option><option value="g3-direct-u17-draft-20261113.html">第 17 單元：十分位與一位小數比較（23題候選）</option><option value="g3-direct-u18-draft-20261113.html">第 18 單元：一位小數直式加減與解題（25題候選）</option><option value="g3-direct-u19-draft-20261113.html">第 19 單元：從0開始的整數數線報讀標示（30題候選）</option><option value="g3-direct-u20-draft-20261113.html">第 20 單元：數線比較與加減（30題候選）</option><option value="g3-direct-u21-draft-20261113.html">第 21 單元：毫米實測估測與長度換算（19題候選）</option><option value="g3-direct-u22-draft-20261113.html">第 22 單元：角的操作比較與直角（25題候選）</option><option value="g3-direct-u23-draft-20261113.html">第 23 單元：平方公分實測與方格點數面積（28題候選）</option><option value="g3-direct-u24-draft-20261113.html" selected>第 24 單元：公升毫升實測估測與換算加減（44題候選）</option><option value="g3-direct-u25-draft-20261113.html">第 25 單元：公斤公克實測估測與換算加減（44題候選）</option><option value="g3-direct-u26-draft-20261113.html">第 26 單元：日時分秒的實測與換算（30題候選）</option><option value="g3-direct-u27-draft-20261113.html">第 27 單元：同單位時間及時分無進退位加減（25題候選）</option><option value="g3-direct-u28-draft-20261113.html">第 28 單元：正長方形邊角特徵與斜擺辨認（20題候選）</option><option value="g3-direct-u29-draft-20261113.html">第 29 單元：圓心半徑直徑與圓規作圖（24題候選）</option><option value="g3-direct-u30-draft-20261113.html">第 30 單元：平面分割與重組（紙筆10題、實作6項）</option><option value="g3-direct-u31-draft-20261113.html">第 31 單元：展開圖與立體形體（紙筆10題、實作4項）</option><option value="g3-direct-u32-draft-20261113.html">第 32 單元：一維模式觀察、操作與說明（29題候選）</option><option value="g3-direct-u33-draft-20261113.html">第 33 單元：生活一維二維表格報讀（35題候選）</option><option value="g3-direct-u34-draft-20261113.html">第 34 單元：表格製作與模式呈現（16題候選）</option><option value="g3-direct-u35-draft-20261113.html">第 35 單元：全年綜合複習與必要操作確認（52題候選）</option></select></div><div class="row"><label for="seed">練習編號</label><input id="seed" type="number" min="1" max="2147483646" value="1"><button class="btn" id="new" type="button">產生新練習單</button><button class="btn ghost" id="show" type="button">依編號重新產生</button></div><div class="row"><label class="check"><input id="showAns" type="checkbox">顯示參考答案</label><label class="check"><input id="showKey" type="checkbox">顯示答案頁</label></div><p>編號只重排現有 44 題；切換單元或重新產生會清除作答。</p><strong>試用／審查中：14 題來源候選與 30 題改編變式，不是完整單元或精熟。</strong><p>實測需真實量杯、容器與水；先暫存估測再量，工具位置及實作由成人確認。</p></section><div id="questions"></div><section class="page controls"><button class="btn" id="checkAnswered" type="button">批改已作答題目</button><p id="summary" role="status"></p><p>實測、方法及題意均由成人確認。</p></section><section class="panel controls"><p><a href="g3-u24-paper-exam-print-20261125.html" target="_blank" rel="noopener">開啟第24單元紙筆測驗列印草案</a>；題目仍待審查。</p></section></main><script>const SOURCE=[{"id":"P01","facet":"measure","prompt":"成人備未標容量的窄杯P與清水。孩子親自用量杯量它可盛多少水，平放工具、以正確視線讀刻度；記杯與讀值，換一種容器盛同量再核對。","answer":"以本次工具與實物實測紀錄為準：有材料ID、工具、單位、讀值與重測紀錄"},{"id":"P02","facet":"estimate","prompt":"先觀察寬杯Q，用實際1公升量感估容量，寫估值與依據；再用真實量杯實測，保留兩值，說不能只看高矮判容量。","answer":"估值在實測前保存；合理使用本題基準單位，有親自量測、單位及差異說明"},{"id":"X01","facet":"measure","prompt":"為家庭做一份可核對的量測與使用記錄，保留原量、變動與工具。 成人備未標容量的小瓶R與清水。孩子親自用量杯量它可盛多少水，平放工具、以正確視線讀刻度；記杯與讀值，換一種容器盛同量再核對。","answer":"以本次工具與實物實測紀錄為準：有材料ID、工具、單位、讀值與重測紀錄"},{"id":"X02","facet":"estimate","prompt":"為家庭做一份可核對的量測與使用記錄，保留原量、變動與工具。 先觀察矮杯S，用實際1公升量感估容量，寫估值與依據；再用真實量杯實測，保留兩值，說不能只看高矮判容量。","answer":"估值在實測前保存；合理使用本題基準單位，有親自量測、單位及差異說明"},{"id":"P03","facet":"convert","metres":4,"mm":194,"total":4194,"prompt":"紀錄為4公升194毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"4194毫升；反寫4公升194毫升"},{"id":"P07","facet":"convert","metres":2,"mm":342,"total":2342,"prompt":"紀錄為2公升342毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"2342毫升；反寫2公升342毫升"},{"id":"P15","facet":"convert","metres":4,"mm":638,"total":4638,"prompt":"紀錄為4公升638毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"4638毫升；反寫4公升638毫升"},{"id":"P19","facet":"convert","metres":2,"mm":786,"total":2786,"prompt":"紀錄為2公升786毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"2786毫升；反寫2公升786毫升"},{"id":"X03","facet":"convert","metres":6,"mm":200,"total":6200,"prompt":"為家庭做一份可核對的量測與使用記錄，保留原量、變動與工具。 紀錄為6公升200毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"6200毫升；反寫6公升200毫升"},{"id":"ADAPTED-01","facet":"convert","metres":1,"mm":0,"total":1000,"prompt":"紀錄為1公升0毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"1000毫升；反寫1公升0毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-02","facet":"convert","metres":1,"mm":9,"total":1009,"prompt":"紀錄為1公升9毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"1009毫升；反寫1公升9毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-03","facet":"convert","metres":2,"mm":30,"total":2030,"prompt":"紀錄為2公升30毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"2030毫升；反寫2公升30毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-04","facet":"convert","metres":3,"mm":100,"total":3100,"prompt":"紀錄為3公升100毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"3100毫升；反寫3公升100毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-05","facet":"convert","metres":4,"mm":5,"total":4005,"prompt":"紀錄為4公升5毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"4005毫升；反寫4公升5毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-06","facet":"convert","metres":5,"mm":250,"total":5250,"prompt":"紀錄為5公升250毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"5250毫升；反寫5公升250毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-07","facet":"convert","metres":6,"mm":75,"total":6075,"prompt":"紀錄為6公升75毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"6075毫升；反寫6公升75毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-08","facet":"convert","metres":7,"mm":900,"total":7900,"prompt":"紀錄為7公升900毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"7900毫升；反寫7公升900毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-09","facet":"convert","metres":8,"mm":10,"total":8010,"prompt":"紀錄為8公升10毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"8010毫升；反寫8公升10毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"ADAPTED-10","facet":"convert","metres":9,"mm":999,"total":9999,"prompt":"紀錄為9公升999毫升。改記全毫升，再反寫原複名數，說明為何不能把兩數直接並排。","answer":"9999毫升；反寫9公升999毫升","origin":"來源題改編變式（待審）","sourceReference":"P03"},{"id":"P04","facet":"calculate","op":"add","a":5231,"b":1307,"total":6538,"prompt":"有5公升231毫升，另加1公升307毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"6538毫升"},{"id":"P08","facet":"calculate","op":"add","a":3379,"b":1383,"total":4762,"prompt":"有3公升379毫升，另加1公升383毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"4762毫升"},{"id":"P16","facet":"calculate","op":"add","a":5675,"b":1535,"total":7210,"prompt":"有5公升675毫升，另加1公升535毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"7210毫升"},{"id":"P20","facet":"calculate","op":"add","a":3123,"b":1611,"total":4734,"prompt":"有3公升123毫升，另加1公升611毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"4734毫升"},{"id":"X04","facet":"calculate","op":"add","a":7237,"b":1629,"total":8866,"prompt":"為家庭做一份可核對的量測與使用記錄，保留原量、變動與工具。 有7公升237毫升，另加1公升629毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"8866毫升"},{"id":"CALC-ADAPTED-01","facet":"calculate","op":"add","a":2000,"b":300,"total":2300,"prompt":"有2公升0毫升，另加0公升300毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"2300毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-02","facet":"calculate","op":"add","a":2137,"b":361,"total":2498,"prompt":"有2公升137毫升，另加0公升361毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"2498毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-03","facet":"calculate","op":"add","a":2274,"b":422,"total":2696,"prompt":"有2公升274毫升，另加0公升422毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"2696毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-04","facet":"calculate","op":"add","a":2411,"b":483,"total":2894,"prompt":"有2公升411毫升，另加0公升483毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"2894毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-05","facet":"calculate","op":"add","a":2548,"b":544,"total":3092,"prompt":"有2公升548毫升，另加0公升544毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"3092毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-06","facet":"calculate","op":"add","a":2685,"b":605,"total":3290,"prompt":"有2公升685毫升，另加0公升605毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"3290毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-07","facet":"calculate","op":"add","a":2822,"b":666,"total":3488,"prompt":"有2公升822毫升，另加0公升666毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"3488毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-08","facet":"calculate","op":"add","a":2959,"b":727,"total":3686,"prompt":"有2公升959毫升，另加0公升727毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"3686毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-09","facet":"calculate","op":"add","a":3096,"b":788,"total":3884,"prompt":"有3公升96毫升，另加0公升788毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"3884毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-10","facet":"calculate","op":"add","a":3233,"b":849,"total":4082,"prompt":"有3公升233毫升，另加0公升849毫升，共多少？可用複名數或先換同單位，保留每步單位。","answer":"4082毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-11","facet":"calculate","op":"sub","a":3370,"b":300,"total":3070,"prompt":"有3公升370毫升，用去0公升300毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3070毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-12","facet":"calculate","op":"sub","a":3507,"b":361,"total":3146,"prompt":"有3公升507毫升，用去0公升361毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3146毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-13","facet":"calculate","op":"sub","a":3644,"b":422,"total":3222,"prompt":"有3公升644毫升，用去0公升422毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3222毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-14","facet":"calculate","op":"sub","a":3781,"b":483,"total":3298,"prompt":"有3公升781毫升，用去0公升483毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3298毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-15","facet":"calculate","op":"sub","a":3918,"b":544,"total":3374,"prompt":"有3公升918毫升，用去0公升544毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3374毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-16","facet":"calculate","op":"sub","a":4055,"b":605,"total":3450,"prompt":"有4公升55毫升，用去0公升605毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3450毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-17","facet":"calculate","op":"sub","a":4192,"b":666,"total":3526,"prompt":"有4公升192毫升，用去0公升666毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3526毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-18","facet":"calculate","op":"sub","a":4329,"b":727,"total":3602,"prompt":"有4公升329毫升，用去0公升727毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3602毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-19","facet":"calculate","op":"sub","a":4466,"b":788,"total":3678,"prompt":"有4公升466毫升，用去0公升788毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3678毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"},{"id":"CALC-ADAPTED-20","facet":"calculate","op":"sub","a":4603,"b":849,"total":3754,"prompt":"有4公升603毫升，用去0公升849毫升，剩多少？可用複名數或先換同單位，保留每步單位。","answer":"3754毫升","origin":"來源題改編變式（待審）","sourceReference":"P04"}];
+'use strict';
+const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function shuffle(items,seed){let a=items.slice(),s=seed>>>0;for(let i=a.length-1;i>0;i--){s=(Math.imul(s,1664525)+1013904223)>>>0;let j=s%(i+1);[a[i],a[j]]=[a[j],a[i]]}return a}function integer(x){let s=String(x).normalize('NFKC').trim();return /^\d{1,6}$/.test(s)?Number(s):NaN}
+function question(q,i){let fields=q.facet==='calculate'?'<label>結果（毫升） <input class="total" type="text" inputmode="numeric"></label>':q.facet==='convert'?'<label>容量（毫升） <input class="total" type="text" inputmode="numeric"></label> <label>反寫公升 <input class="metres" type="text" inputmode="numeric"></label> <label>反寫毫升 <input class="mm" type="text" inputmode="numeric"></label>':q.facet==='estimate'?'<label>先記原估值與參照 <input class="estimate" type="text"></label> <button type="button" class="save-estimate">暫存估值，開始量測</button><p class="saved" role="status"></p><label>實測與差異 <textarea class="measurement" aria-label="實測與差異" disabled></textarea></label><button type="button" class="reset-estimate">清空本題重新估測</button>':'<label>物件、工具、讀值與重測紀錄 <textarea class="measurement" aria-label="物件、工具、讀值與重測紀錄"></textarea></label>';return '<article class="item" data-id="'+esc(q.id)+'"><strong>'+(i+1)+'. </strong>'+(q.origin?'<span class="note">'+esc(q.origin)+'</span>':'')+'<p>'+esc(q.prompt)+'</p>'+fields+' <button class="check controls" type="button">檢查填寫</button><p class="feedback" role="status"></p><label>記錄方法、單位與說明 <textarea aria-label="記錄方法、單位與說明"></textarea></label><p class="note">真實量測、估測先後、工具位置、方法與說明須成人確認。</p><div class="answer" hidden>參考答案：'+esc(q.answer)+'</div></article>'}
+function render(items,n){$('#questions').innerHTML='<section class="page"><div class="page-head"><h2>第 24 單元：公升毫升實測估測與換算加減</h2><span>練習編號 '+esc(n)+'　｜　'+items.length+' 題候選</span></div><div class="question-list">'+items.map(question).join('')+'</div></section><section class="page key" id="key" hidden><h2>家長參考答案</h2>'+items.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('')+'</section>';document.querySelectorAll('#questions article').forEach((card,i)=>{let q=items[i],f=card.querySelector('.feedback');if(q.facet==='estimate'){let estimate=card.querySelector('.estimate'),measure=card.querySelector('.measurement'),saved=card.querySelector('.saved');card.querySelector('.save-estimate').onclick=()=>{if(!estimate.value.trim()){saved.textContent='請先填寫估值與參照。';return}estimate.disabled=true;measure.disabled=false;saved.textContent='已暫存原估值，請再實際量測；重新產生或離開頁面會清除。';f.textContent=''};card.querySelector('.reset-estimate').onclick=()=>{estimate.value='';estimate.disabled=false;measure.value='';measure.disabled=true;saved.textContent='已清空估值與實測紀錄。';f.textContent=''}}card.querySelectorAll('input,textarea').forEach(x=>x.oninput=()=>f.textContent='');card.querySelector('.check').onclick=()=>{if(q.facet==='calculate'){let value=card.querySelector('.total').value;if(!value.trim()){f.textContent='請先填寫結果。';return}f.textContent=integer(value)===q.total?'結果數字正確；算式、單位與說明請成人確認。':'請再檢查計算與單位。';return}if(q.facet!=='convert'){let m=card.querySelector('.measurement');if(!m.value.trim()||(q.facet==='estimate'&&!card.querySelector('.estimate').disabled)){f.textContent='請先完成實測紀錄；估測題須先暫存估值。';return}f.textContent='已記錄；工具、估測先後、測量與說明須由成人確認。';return}let fields=[...card.querySelectorAll('input')];if(fields.some(x=>!x.value.trim())){f.textContent='請先完成換算欄位。';return}let get=s=>integer(card.querySelector(s).value),ok=get('.total')===q.total&&get('.metres')===q.metres&&get('.mm')===q.mm;f.textContent=ok?'換算數字正確；單位與說明請成人確認。':'請再檢查全毫升及反寫數字。'}});toggle()}
+function toggle(){document.querySelectorAll('#questions .answer').forEach(x=>x.hidden=!$('#showAns').checked);let key=$('#key');if(key)key.hidden=!$('#showKey').checked}$('#showAns').onchange=toggle;$('#showKey').onchange=toggle;$('#show').onclick=()=>{let n=Number($('#seed').value);if(!Number.isSafeInteger(n)||n<1||n>2147483646){alert('請輸入 1 至 2147483646 的練習編號。');return}$('#summary').textContent='';render(shuffle(SOURCE,n),n)};$('#new').onclick=()=>{$('#seed').value=1+Math.floor(Math.random()*2147483645);$('#show').click()};$('#checkAnswered').onclick=()=>{let n=0;document.querySelectorAll('#questions article').forEach(card=>{if([...card.querySelectorAll('input,textarea')].some(x=>x.value.trim())){n++;card.querySelector('.check').click()}});$('#summary').textContent='已處理 '+n+' 題填寫或紀錄；實測、單位與說明請成人確認。'};$('#show').click();
+</script><script>const MASTERY_DATA=[{"id":"MA-G3-24-01","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為1公升21毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[1021,1,21],"answer":"1021毫升＝1公升21毫升。","key":[1,21]},{"id":"MA-G3-24-02","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為2公升74毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[2074,2,74],"answer":"2074毫升＝2公升74毫升。","key":[2,74]},{"id":"MA-G3-24-03","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為3公升127毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[3127,3,127],"answer":"3127毫升＝3公升127毫升。","key":[3,127]},{"id":"MA-G3-24-04","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為4公升180毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[4180,4,180],"answer":"4180毫升＝4公升180毫升。","key":[4,180]},{"id":"MA-G3-24-05","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為5公升233毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[5233,5,233],"answer":"5233毫升＝5公升233毫升。","key":[5,233]},{"id":"MA-G3-24-06","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為6公升286毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[6286,6,286],"answer":"6286毫升＝6公升286毫升。","key":[6,286]},{"id":"MA-G3-24-07","origin":"精熟候選（待審）","sourceReference":"P03","prompt":"紀錄為7公升339毫升。改記全部毫升，再反寫原來的大單位與剩餘小單位。","labels":["全部毫升","反寫公升","剩餘毫升"],"values":[7339,7,339],"answer":"7339毫升＝7公升339毫升。","key":[7,339]},{"id":"MA-G3-24-11","origin":"精熟候選（待審）","sourceReference":"P03概念改編","prompt":"水壺原有 1 公升 250 毫升水，倒出 400 毫升後還剩多少毫升？","labels":["剩餘毫升"],"values":[850],"answer":"1250－400＝850 毫升。","key":["paper-sub",1250,400]},{"id":"MA-G3-24-12","origin":"精熟候選（待審）","sourceReference":"P03概念改編","prompt":"甲瓶有 980 毫升果汁，乙瓶有 1 公升 20 毫升。乙瓶比甲瓶多多少毫升？","labels":["相差毫升"],"values":[40],"answer":"1020－980＝40 毫升。","key":["paper-diff",1020,980]},{"id":"MA-G3-24-13","origin":"精熟候選（待審）","sourceReference":"P03概念改編","prompt":"容器原有 2 公升水，倒出 750 毫升。剩下幾公升幾毫升？","labels":["公升","毫升"],"values":[1,250],"answer":"2000－750＝1250 毫升，即 1 公升 250 毫升。","key":["paper-mixed",2000,750]},{"id":"MA-G3-24-08","origin":"精熟候選（待審）","sourceReference":"P01/P02","prompt":"先估杯子可裝的水量，再用量杯實測，記估值、讀值及視線位置。","labels":[],"values":[],"answer":"須保留估測與真實測量紀錄；成人確認工具、操作、單位及理由。","key":["杯子"]},{"id":"MA-G3-24-09","origin":"精熟候選（待審）","sourceReference":"P01/P02","prompt":"先估小水瓶可裝的水量，再用量杯實測，記估值、讀值及視線位置。","labels":[],"values":[],"answer":"須保留估測與真實測量紀錄；成人確認工具、操作、單位及理由。","key":["小水瓶"]},{"id":"MA-G3-24-10","origin":"精熟候選（待審）","sourceReference":"P01/P02","prompt":"先估小碗可裝的水量，再用量杯實測，記估值、讀值及視線位置。","labels":[],"values":[],"answer":"須保留估測與真實測量紀錄；成人確認工具、操作、單位及理由。","key":["小碗"]}];
+(function(){'use strict';const all=MASTERY_DATA,unit=Number((all[0]?.id||'').match(/^MA-G3-(\d+)-/)?.[1]),separate=unit>=14&&unit<=34&&unit!==30&&unit!==31,data=separate?all.filter(q=>q.values.length):all,physical=separate?all.filter(q=>!q.values.length):[],$=s=>document.querySelector(s),esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function picture(q){if(!q.diagram)return '';let d=q.diagram;if(d.type==='grid'||!d.type)return '<div role="img" aria-label="'+d.rows+'排、每排'+d.cols+'個方格；每格代表1平方公分" style="display:grid;grid-template-columns:repeat('+d.cols+',24px);width:max-content;border-top:1px solid;border-left:1px solid">'+Array.from({length:d.rows*d.cols},()=>'<span aria-hidden="true" style="width:24px;height:24px;box-sizing:border-box;border-right:1px solid;border-bottom:1px solid"></span>').join('')+'</div><p>示意圖；螢幕與列印尺寸未校準。</p>';if(d.type==='angles'){return '<div style="display:flex;flex-wrap:wrap;gap:8px">'+d.angles.map((a,i)=>{let pt=deg=>{let r=deg*Math.PI/180;return [130+a.length*Math.cos(r),130-a.length*Math.sin(r)].map(x=>x.toFixed(3)).join(' ')};return '<figure style="width:140px;margin:0"><figcaption>圖 '+(i?'B':'A')+'</figcaption><svg viewBox="0 0 260 260" role="img" aria-label="圖 '+(i?'B':'A')+' 的兩邊與共同端點"><path d="M '+pt(a.rotation)+' L 130 130 L '+pt(a.rotation+a.opening)+'" fill="none" stroke="currentColor" stroke-width="4"/><circle cx="130" cy="130" r="3"/></svg></figure>'}).join('')+'</div>'}if(d.type==='shape')return '<svg viewBox="0 0 220 180" style="display:block;width:min(220px,100%);height:auto" role="img" aria-label="四邊形示意圖"><g transform="translate(110 90) rotate('+d.rotation+')"><polygon points="'+d.points+'" fill="#d9eef5" stroke="#153a45" stroke-width="3"/></g></svg>';if(d.type==='circle')return '<svg viewBox="0 0 220 180" style="display:block;width:min(220px,100%);height:auto" role="img" aria-label="O是圓心，P、Q在圓周且PQ通過圓心"><circle cx="110" cy="90" r="60" fill="#e5f3f7" stroke="#153a45" stroke-width="2"/><path d="M50 90 H170" stroke="#153a45" stroke-width="2"/><circle cx="110" cy="90" r="3"/><text x="105" y="108">O</text><text x="38" y="85">P</text><text x="173" y="85">Q</text></svg>';if(d.type==='table'){let [a,b,c,e]=d.counts;return '<table><caption>卡片數量（張）</caption><thead><tr><th scope="col">顏色</th><th scope="col">圓形</th><th scope="col">三角形</th></tr></thead><tbody><tr><th scope="row">紅色</th><td>'+a+'</td><td>'+b+'</td></tr><tr><th scope="row">藍色</th><td>'+c+'</td><td>'+e+'</td></tr></tbody></table>'}if(d.type==='netPair')return '<div style="display:flex;flex-wrap:wrap;gap:12px">'+d.nets.map((cells,i)=>'<figure style="margin:0"><figcaption>圖'+(i?'B':'A')+'</figcaption>'+picture({diagram:{type:'net',cells}})+'</figure>').join('')+'</div>';if(d.type==='net'){let set=new Set(d.cells.map(([x,y])=>x+','+y)),edges=[];for(let [x,y] of d.cells)for(let [x1,y1,x2,y2,nx,ny] of [[x,y,x+1,y,x,y-1],[x+1,y,x+1,y+1,x+1,y],[x,y+1,x+1,y+1,x,y+1],[x,y,x,y+1,x-1,y]]){let shared=set.has(nx+','+ny);if(shared&&(nx<x||ny<y))continue;edges.push('<line x1="'+(10+x1*38)+'" y1="'+(10+y1*38)+'" x2="'+(10+x2*38)+'" y2="'+(10+y2*38)+'" stroke="#111" stroke-width="2"'+(shared?' stroke-dasharray="5 4"':'')+'/>')}return '<svg viewBox="0 0 180 140" style="display:block;width:min(180px,100%);height:auto" role="img" aria-label="展開材料，實線剪、虛線摺'+(d.faceLabels?'；'+d.cells.map(([x,y],i)=>esc(d.faceLabels[i])+'在第'+(y+1)+'列第'+(x+1)+'欄').join('、'):'')+'">'+edges.join('')+(d.faceLabels?d.cells.map(([x,y],i)=>'<text x="'+(29+x*38)+'" y="'+(34+y*38)+'" text-anchor="middle" font-size="18">'+esc(d.faceLabels[i])+'</text>').join(''):'')+'</svg><p>需實際剪、摺、用膠帶黏合；列印尺寸未驗證。</p>'}throw Error('Unsupported diagram')}let host=document.createElement('section');host.className='panel controls mastery-review';host.innerHTML='<h2>'+(separate?'紙筆測驗':'精熟測驗')+'（審查草案）</h2><p>這是另外準備的'+data.length+'題或項候選，請完成後交給成人確認；電腦只核對數字或選項，不能判定整體精熟。此草案不隨練習單列印。'+(data.some(q=>q.reusedPracticeMaterial)?'部分圖形或操作與練習相似，可能已曝光；獨立性須由成人確認。':'')+'</p>'+(data[0]&&data[0].id.startsWith('MA-G3-30-')?'<p><a href="g3-u30-mastery-print-draft-20261125.html" target="_blank" rel="noopener">開啟剪拼實作列印草案</a>；部分操作與練習相似，須由成人確認曝光。</p>':'')+(data[0]&&data[0].id.startsWith('MA-G3-31-')?'<p><a href="g3-u31-mastery-print-draft-20261125.html" target="_blank" rel="noopener">開啟剪摺材料列印草案</a>；列印前請由成人保管，材料一旦看過不再視為未見題。</p>':'')+'<button type="button" class="btn mastery-start">開始測驗</button> <button type="button" class="btn ghost mastery-reset" hidden>重新開始（清除本次作答）</button><div class="mastery-questions"></div><button type="button" class="btn mastery-submit" hidden>提交作答</button><p class="mastery-result" role="status"></p><div class="mastery-key" hidden></div>';document.querySelector('main').appendChild(host);let start=host.querySelector('.mastery-start'),reset=host.querySelector('.mastery-reset'),submit=host.querySelector('.mastery-submit'),panel=host.querySelector('.mastery-questions'),result=host.querySelector('.mastery-result'),key=host.querySelector('.mastery-key'),submitted=false,started=false,repeated=false;function begin(){repeated=started;started=true;submitted=false;result.textContent=repeated?'這是重做，不能作首次獨立測量；重新整理或切換單元後紀錄不保留。':'重新整理或切換單元後作答不保留，請由成人記錄首次作答。';key.hidden=true;key.innerHTML='';panel.innerHTML=data.map((q,i)=>'<article class="item mastery-item"><strong>'+(i+1)+'. </strong><p>'+esc(q.prompt)+'</p>'+picture(q)+q.labels.map((x,j)=>'<label>'+esc(x)+' '+(q.options&&q.options[j]?'<select class="mastery-field" data-index="'+j+'"><option value="">請選擇</option>'+q.options[j].map(v=>'<option>'+esc(v)+'</option>').join('')+'</select>':'<input type="text" inputmode="numeric" class="mastery-field" data-index="'+j+'">')+'</label> ').join('')+'<label>記錄算式、步驟與理由 <textarea class="mastery-note"></textarea></label><p class="mastery-feedback" role="status"></p></article>').join('');start.hidden=true;reset.hidden=false;submit.hidden=false;submit.disabled=false}start.onclick=begin;reset.onclick=begin;submit.onclick=()=>{if(submitted)return;let cards=[...panel.querySelectorAll('.mastery-item')],missing=false;cards.forEach((card,i)=>{let q=data[i],fields=[...card.querySelectorAll('.mastery-field')],note=card.querySelector('.mastery-note');if((q.values.length?fields.some(x=>!x.value.trim()):!note.value.trim())||(q.requireNote&&!note.value.trim()))missing=true});if(missing){result.textContent='請先完成每題的數字、選項或文字紀錄。';return}let checked=0,pending=0;cards.forEach((card,i)=>{let q=data[i],fields=[...card.querySelectorAll('.mastery-field')],note=card.querySelector('.mastery-note'),f=card.querySelector('.mastery-feedback');if(q.values.length){let ok=fields.every((x,j)=>{let v=x.value.normalize('NFKC').trim();return typeof q.values[j]==='string'?v===q.values[j]:/^\d{1,6}$/.test(v)&&Number(v)===q.values[j]});if(ok)checked++;f.textContent=ok?'填寫內容核對正確；步驟及理由待成人確認。':'填寫內容需要再檢查；步驟及理由待成人確認。'}else{pending++;f.textContent='實作、方法與理由待成人確認。'}[...fields,note].forEach(x=>x.disabled=true)});submitted=true;submit.disabled=true;result.textContent='已提交'+(repeated?'（重做，不作首次獨立測量）':'')+'；數字或選項核對正確 '+checked+' 題'+(pending?'，另有 '+pending+' 項待成人確認':'')+'。直式、實物、理由及是否精熟均須真人確認。';key.innerHTML='<h3>成人參考答案</h3>'+data.map((q,i)=>'<p>'+(i+1)+'. '+esc(q.answer)+'</p>').join('');key.hidden=false};if(physical.length){let extra=document.createElement('details');extra.className='panel controls mastery-hands-on';extra.innerHTML='<summary>實物操作（選做，須成人確認）</summary><p>可自行記錄實際操作；不計入紙筆測驗，電腦不判定操作結果。重新整理後紀錄不保留。</p>'+physical.map((q,i)=>'<article class="item"><p><strong>'+(i+1)+'. </strong>'+esc(q.prompt)+'</p><label>操作與觀察紀錄 <textarea></textarea></label></article>').join('');document.querySelector('main').appendChild(extra)}})();
+
+document.getElementById("directUnit").addEventListener("change",function(){location.href=this.value});</script></body></html>
